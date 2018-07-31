@@ -1,0 +1,17 @@
+@import './variables.scss';
+
+
+html, body {
+  margin: 0 auto;
+  padding: 0px;
+  font-family: $font-family;
+  font-size: $size-rem-1;
+  font-weight: 500;
+}
+
+.app{
+  // display: flex;
+  // justify-content: flex-start;
+  // flex-wrap: wrap;
+  // position: relative;
+}
