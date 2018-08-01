@@ -4,30 +4,25 @@ import MenuItems from './MenuItems';
 import {menuData, menuBottomData} from '../constants'
 
 class Sidebar extends Component {
-    state={
-        collapsed: false
-    }
-    toggleSidebar = () => {
-        this.setState({
-            collapsed:!this.state.collapsed
-        })
-    }
-
   render() {
-      let {collapsed} = this.state;
+      let {collapsed} = this.props;
     return (
-      <div className={`sibebar ${collapsed ? 'collapsed' : ''}`}>
-        <div className="content-wrapper">
-            <div className="menu">
-                <MenuItems menuItems={menuData}/>
-            </div>
-            <div className="menu-bottom">
-                <MenuItems menuItems={menuBottomData}/>
+      <div className="sidebar-wrapper">
+          <div className="sibebar">
+            <div className="content-wrapper">
+                <div className="menu">
+                    <MenuItems menuItems={menuData} onClick={(link)=>this.props.history.push(link)}/>
+                </div>
+                <div className="menu-bottom">
+                    <MenuItems menuItems={menuBottomData}/>
+                </div>
             </div>
         </div>
-        <span className="expand-btn" onClick={this.toggleSidebar}>
-        {collapsed ? <i class="fas fa-chevron-right"></i> : <i class="fas fa-chevron-left"></i>}
-        </span>
+        <div className="resize-btn" onClick={()=>this.props.toggleSidebar()}>
+            <span className="expand-btn">
+                {collapsed ? <i class="fas fa-chevron-right"></i> : <i class="fas fa-chevron-left"></i>}
+            </span>
+        </div>
       </div>
     );
   }

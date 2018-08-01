@@ -1,0 +1,24 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .profile-sec{
+        display: flex;
+        .icon{
+            // padding: 0 10px; 
+            display: flex;
+            align-items: center;
+            font-size: 3rem;
+            margin: 0 10px;
+            cursor: pointer;
+            color: #2dafd9;
+        }
+        .bell{
+            font-size: 1.5rem;
+        }
+        img{
+            width:35px;
+            border-radius: 100px;
+        }
+    }
+}

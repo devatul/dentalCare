@@ -1,25 +1,17 @@
+.sidebar-wrapper{
+    display: flex;
+    position: fixed;
+    left: 0;
+}
 .sibebar{
     background: $sidebar-bg;
+    float: left;
     height: 100vh;
     width: 187px;
     max-width: 240px !important;
     min-width: 240px !important;
     overflow: auto;
     transition: width 1s  max-width 1s  min-width 1s;
-    .expand-btn{
-        position: absolute;
-        top: 50vh;
-        margin-left: 240px;
-        color: #27acd9;
-        padding: 5px 8px;
-        border-radius: 13px;
-        transition: box-shadow .3s;
-        cursor: pointer;
-        &:hover{
-            box-shadow: 0px 0px 3px 1px;
-
-        }
-    }
     .content-wrapper{
         padding: 0 10px;
         text-align: center;
@@ -48,12 +40,11 @@
             font-size: 1.2rem;
         }
     }
-    &.collapsed{
+}
+.collapsed{
+    .sibebar{
         max-width: 72px !important;
         min-width: 72px !important;
-        .expand-btn{
-            margin-left: 72px;
-        }
         .menu-item{
             display: block;
             .icon{
@@ -62,6 +53,42 @@
             .label{
                 display: none;
             }
+        }
+    }
+}
+.resize-btn{
+    height: 100vh;
+    width: 16px;
+    display: block;
+    float: left;
+    cursor: ew-resize;
+    &::before{
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 2px;
+        transition: background-color 300ms ease-in-out 200ms;
+    }
+    &:hover::before{
+        background: rgb(76, 154, 255);
+    }
+    .expand-btn{
+        position: absolute;
+        top: 50vh;
+        color: #27acd9;
+        opacity: 0;
+        padding: 5px 8px;
+        border-radius: 13px;
+        transition: box-shadow .3s, opacity .3s;
+        cursor: pointer;
+        &:hover{
+            box-shadow: 0px 0px 3px 1px;
+        }
+    }
+    &:hover{
+        .expand-btn{
+            opacity: 1;
+            transition: opacity 300ms ease-in-out 200ms;
         }
     }
 }

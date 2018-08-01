@@ -5,16 +5,34 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import store from './redux/store';
+import {accounts, dashboard, invoice, settings,reports} from './constants';
 
+const Loading = () => <div>Loading...</div>;
+
+const Dashboard = Loadable({
+  loader: () => import('./containers/Home'),
+  loading: Loading,
+});
+const Invoice = Loadable({
+  loader: () => import('./containers/Home'),
+  loading: Loading,
+});
+const Accounts = Loadable({
+  loader: () => import('./containers/Accounts'),
+  loading: Loading,
+});
+const Reports = Loadable({
+  loader: () => import('./containers/Home'),
+  loading: Loading,
+});
+const Settings = Loadable({
+  loader: () => import('./containers/Home'),
+  loading: Loading,
+});
 
 class App extends Component {
   constructor(){
-    super()
-    const Loading = () => <div>Loading...</div>;
-    this.Home = Loadable({
-      loader: () => import('./containers/Home'),
-      loading: Loading,
-    });
+    super();
   }
 
   render() {
@@ -23,7 +41,12 @@ class App extends Component {
       <Provider store={store} key="provider">
         <Router>
           <Switch>
-            <Route exact path="/" render={(props)=><this.Home {...props}  />} />
+            <Route exact path="/" render={(props)=><Dashboard {...props} data={dashboard} />} />
+            <Route exact path="/dashboard" render={(props)=><Dashboard {...props} data={dashboard} />} />
+            <Route exact path="/invoice" render={(props)=><Invoice {...props} data={invoice} />} />
+            <Route exact path="/accounts" render={(props)=><Accounts {...props} data={accounts} />} />
+            <Route exact path="/reports" render={(props)=><Reports {...props} data={reports} />} />
+            <Route exact path="/settings" render={(props)=><Settings {...props} data={settings} />} />
           </Switch>
         </Router>
       </Provider>

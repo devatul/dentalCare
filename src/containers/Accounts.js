@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../redux/home/actions';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import Placeholder from '../components/DummyPlaceHolder';
+import Accounts from '../components/Accounts';
 
 
 class Home extends Component {
@@ -23,7 +23,7 @@ class Home extends Component {
         <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
         <div className="main-page">
           <Header />
-          <Placeholder {...this.props}/>
+          <Accounts {...this.props}/>
         </div>
       </div>
     );

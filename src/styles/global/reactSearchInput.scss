@@ -1,0 +1,37 @@
+.search-input {
+    padding: 10px 0;
+    height: 52px;
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .search-input::before {
+    display: none;
+  }
+  .search-input::after {
+    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAQJJREFUKBWVkr2uQUEUhf3ET6GRaC5aFRoJKrf1BKpb8SwqovYGXkCj00k0QnRKEYkILYobvpUYmeMMyVnJl7P3mjN7Zu9zwiGv2qRFyMMSRrAFp6JPN8XzBj+wgDkUYAg7WINTYdwpDECxrRLJHeq2accdkgm8bzTvNAg2EDOGeUYI1KNO1gkuzTA1g8T7ojbn4ONQWPuHPWgeHmnzCqoe15tkSNPgPEAn68oVcOmA2XMtGK9FoE/VhOTTVNExqLCGZnxCv2pYauEC6lF0oQxX6IOvb7yX9NPEQafan+aPXDdQC18LsO6Tip5BBY6gIQaSbnMCFRCBZRcIvFkbsvCr4AFGOCxQy+JdGQAAAABJRU5ErkJggg==');
+    display: block;
+    position: absolute;
+    width: 27px;
+    z-index: 3;
+    height: 31px;
+    font-size: 42px;
+    top: 18px;
+    /* left: 16px; */
+    right: 11px;
+    line-height: 22px;
+    opacity: 0.6;
+  }
+  
+  .search-input > input {
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    line-height: 22px;
+    padding: 10px 10px 10px 25px;
+    height: 50px;
+    position: relative;
+  }
+  
+  .search-input > input:focus {
+    outline: none;
+  }
