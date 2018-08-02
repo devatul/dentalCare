@@ -14,7 +14,7 @@ class Sidebar extends Component {
                     <MenuItems menuItems={menuData} onClick={(link)=>this.props.history.push(link)}/>
                 </div>
                 <div className="menu-bottom">
-                    <MenuItems menuItems={menuBottomData}/>
+                    <MenuItems menuItems={menuBottomData} onClick={(link)=>this.props.history.push(link)}/>
                 </div>
             </div>
         </div>

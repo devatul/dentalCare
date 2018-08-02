@@ -5,7 +5,16 @@ import { Tabs, Tab, FormControl, Button } from 'react-bootstrap';
 
 class SettingPage extends Component {
     state = {
-        activeTab: 1
+        activeTab: 1,
+        expend: {id:'', expended: false}
+    }
+    handleCollapce = (id)=>{
+        let {expend} = this.state;
+        if(expend.id === id){
+
+        }else{
+            this.setState({expend: {id, expended: true}})
+        }
     }
   render() {
     return (
@@ -21,8 +30,8 @@ class SettingPage extends Component {
                             <div className="button-wrapper">
                                 <Button>Subscriptions</Button>
                             </div>
-                            <div className="expendable-box expanded">
-                                <div className="header">Payment History</div>
+                            <div id="billing-1" className="expendable-box expanded">
+                                <div className="header" onClick={()=>this.handleCollapce('billing-1')}>Payment History</div>
                                 <div className="content">page content</div>
                             </div>
                         </div>
