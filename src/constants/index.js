@@ -90,5 +90,6 @@ export const settings = {
     title: 'Settings'
 }
 export const userData = {
+    title: 'User Account',
     userName:'sam '
 }
