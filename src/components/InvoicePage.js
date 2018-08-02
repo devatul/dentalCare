@@ -16,9 +16,9 @@ class InvoicePage extends Component {
         if(data.rows.length){
             data.rows.map((row, i)=>{
                 rows.push(
-                    <div key={i} className="card">
+                    <div key={i+1} className="card">
                         <div className="cell f-30">
-                            <span>{i}</span>
+                            <span>{i+1}</span>
                         </div>
                         <div className="cell">
                             <span>{row.name}</span>
@@ -114,6 +114,12 @@ class InvoicePage extends Component {
             </div>
             <div className="content-body">
                 {this.getTableBody()}
+            </div>
+            <div className="paginat">
+                <ButtonGroup>
+                    <Button>Previous</Button>
+                    <Button>Next</Button>
+                </ButtonGroup>
             </div>
             <div className="inoive-buttons">
                 <ButtonGroup>

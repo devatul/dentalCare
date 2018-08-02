@@ -8,7 +8,7 @@ class AccountDetailsPage extends Component {
       <div className="page-body-wrapper">
         <div className="account-details">
             <div className="page-title">
-                <h1>Accounts > {this.props.data.userName}</h1>
+                <h1><span className="link" onClick={()=>this.props.history.push('/accounts')}>Accounts</span> > {this.props.data.userName}</h1>
             </div>
             <div className="banner">
                 <div className="top-bg">

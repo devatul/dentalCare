@@ -1,7 +1,7 @@
 
 export const menuData = [
     {label:'Dashboard', link:'/dashboard', icon:'fa-plus-square'},
-    {label:'Invoice', link:'/invoice', icon:'fa-file'},
+    {label:'Invoices', link:'/invoice', icon:'fa-file'},
     {label:'Accounts', link:'/accounts', icon:'fa-user-friends'},
     {label:'Reports', link:'/reports', icon:'fa-chart-pie'},
     {label:'Settings', link:'/settings', icon:'fa-cog'},
@@ -51,7 +51,7 @@ export const dashboard = {
     rows : []
 }
 export const invoice = {
-    title: 'Invoice',
+    title: 'Invoices',
     headers:["", 'Patient', 'Issued Date', 'Status', 'Due Now', ""],
     rows : [
         {
