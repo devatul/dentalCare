@@ -3,4 +3,39 @@
         // display: flex;
         // justify-content: center;
     }
+    .billing{
+        .button-wrapper{
+            margin: 10px  0;
+            button{
+                background: gray;
+                width: 100%;
+                padding: 13px;
+                font-size: 1.2rem;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.expendable-box{
+    border: 1px solid gray;
+    border-radius: 5px;
+    .header{
+        background: rgba(128, 128, 128, 0.44);
+        text-align: center;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 15px; 
+        display: block;
+        cursor: pointer;
+    }
+    .content{
+        height: 0;
+        overflow: hidden;
+    }
+    &.expanded{
+        .content{
+            height: auto;
+        }
+    }
 }
