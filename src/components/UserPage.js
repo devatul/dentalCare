@@ -21,7 +21,7 @@ class UserPage extends Component {
                     />
                 </div>
                 <div className="form-field">
-                    <div className="field-label">Enamil</div>
+                    <div className="field-label">E-mail</div>
                     <FormControl 
                     type="text" 
                     placeholder="test@gamail.com"

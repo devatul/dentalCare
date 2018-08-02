@@ -3,6 +3,9 @@
         // display: flex;
         // justify-content: center;
     }
+    .desc{
+        color: gray;
+    }
     .billing{
         .button-wrapper{
             margin: 10px  0;
@@ -16,6 +19,37 @@
         }
         .content{
             text-align: center;
+        }
+    }
+    .deposits{
+        
+    }
+    .clinic-setting{
+        padding: 10px;
+        .manage-template{
+            text-align: center;
+            button{
+                background: #dad2d2;
+                border: 1px solid;
+                padding: 7px 30px;
+            }
+        }
+    }
+    .payment-reminder{
+        .form{
+            .form-field{
+                // width: 100%;
+                // max-width: 400px;
+                // margin: 20px auto;
+            }
+            .field-label{
+                width: 40%;
+                float: left;
+            }
+            .input-field{
+                width: 60%;
+                float: left;
+            }
         }
     }
 }
@@ -36,11 +70,13 @@
         height: 0;
         overflow: hidden;
         background: #fff;
-        padding: 15px;
+        transition: height 1s;
     }
     &.expanded{
         .content{
             height: auto;
+            padding: 10px;
+            transition: height 1s;
         }
     }
 }

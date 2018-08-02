@@ -1,0 +1,23 @@
+.dashboard{
+    .alert{
+        text-align: center;
+    }
+    h3{
+        text-align: center;
+        margin-bottom: 35px;
+    }
+    .invoice-balance, .current-accounts{
+        width: 100%;
+        height: 400px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+        margin-top: 60px;
+        .title{
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 10px;
+            color: rgba(0, 0, 0, 0.4);
+        }
+    }
+}

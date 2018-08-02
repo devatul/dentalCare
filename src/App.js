@@ -10,7 +10,7 @@ import {accounts, dashboard, invoice, settings,reports, userData, accountsDetals
 const Loading = () => <div>Loading...</div>;
 
 const Dashboard = Loadable({
-  loader: () => import('./containers/Home'),
+  loader: () => import('./containers/Dashboard'),
   loading: Loading,
 });
 const Invoice = Loadable({
@@ -26,7 +26,7 @@ const AccountsDetails = Loadable({
   loading: Loading,
 });
 const Reports = Loadable({
-  loader: () => import('./containers/Home'),
+  loader: () => import('./containers/Reports'),
   loading: Loading,
 });
 const Settings = Loadable({

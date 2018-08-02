@@ -46,7 +46,9 @@ export const accountsDetalsData = {
     userName:'Bertie Nichols' 
 }
 export const dashboard = {
-    title: 'Dashboard'
+    title: 'Dashboard',
+    headers:["Full Name", 'Amount', 'Date of Generation'],
+    rows : []
 }
 export const invoice = {
     title: 'Invoice',
