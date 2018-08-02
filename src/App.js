@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import store from './redux/store';
-import {accounts, dashboard, invoice, settings,reports} from './constants';
+import {accounts, dashboard, invoice, settings,reports, userData} from './constants';
 
 const Loading = () => <div>Loading...</div>;
 
@@ -14,7 +14,7 @@ const Dashboard = Loadable({
   loading: Loading,
 });
 const Invoice = Loadable({
-  loader: () => import('./containers/Home'),
+  loader: () => import('./containers/Invoice'),
   loading: Loading,
 });
 const Accounts = Loadable({
@@ -26,7 +26,11 @@ const Reports = Loadable({
   loading: Loading,
 });
 const Settings = Loadable({
-  loader: () => import('./containers/Home'),
+  loader: () => import('./containers/Setting'),
+  loading: Loading,
+});
+const User = Loadable({
+  loader: () => import('./containers/User'),
   loading: Loading,
 });
 
@@ -47,6 +51,7 @@ class App extends Component {
             <Route exact path="/accounts" render={(props)=><Accounts {...props} data={accounts} />} />
             <Route exact path="/reports" render={(props)=><Reports {...props} data={reports} />} />
             <Route exact path="/settings" render={(props)=><Settings {...props} data={settings} />} />
+            <Route exact path="/user" render={(props)=><User {...props} data={userData} />} />
           </Switch>
         </Router>
       </Provider>

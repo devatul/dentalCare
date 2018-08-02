@@ -1,0 +1,43 @@
+.invoice{
+    .range-wrapper{
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+        button{
+            background: gray;
+            border: 0;
+            padding: 10px 20px;
+            font-size: 1.3rem;   
+        }
+    }
+    .summary{
+        display: flex;
+        justify-content: space-around;
+        margin: 2rem 0;
+    }
+    .total{
+        display: block;
+        text-align: center;
+        .amt{
+            font-size: 2rem;
+            color:#164496;
+        }
+        .text{
+            font-size: 1.2rem;
+        }
+    }
+    .inoive-buttons{
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+        button{
+            background: #7ac033;
+            border: 0;
+            padding: 10px 20px;
+            font-size: 1.3rem; 
+            color: #fff;
+            margin: 15px;  
+        }
+    }
+    
+}

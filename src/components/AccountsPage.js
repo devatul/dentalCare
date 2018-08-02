@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import SearchInput, {createFilter} from 'react-search-input';
-import {accounts} from '../constants';
 
-class Accounts extends Component {
+class AccountsPage extends Component {
     state = {
         searchTerm: ''
     }
@@ -11,7 +10,7 @@ class Accounts extends Component {
         this.setState({searchTerm: term})
     }
   render() {
-      let d= this.props.data.rows;
+      let {data}= this.props;
     return (
       <div className="page-body-wrapper">
         <div className="accounts">
@@ -22,22 +21,16 @@ class Accounts extends Component {
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
             </div>
             <div className="content-header">
-                <div className="cell">
-                    <span>Name</span>
+                {data.headers.map((header)=>{
+                    return (<div className="cell">
+                    <span>{header}</span>
                     <span><i className="fas fa-angle-down"></i></span>
-                </div>
-                <div className="cell">
-                    <span>Date</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
-                <div className="cell">
-                    <span>Status</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
+                </div>)
+                })}
             </div>
             <div className="content-body">
                 {
-                    d.map((row)=>{
+                    data.rows.map((row)=>{
                         return (
                             <div className="card">
                                 <div className="cell">
@@ -45,10 +38,10 @@ class Accounts extends Component {
                                     <span>{row.name}</span>
                                 </div>
                                 <div className="cell">
-                                    <div><strong>Date : </strong>{row.date}</div>
-                                    <div><strong>Time : </strong>{row.time}</div>
+                                    <div className="f-100"><strong>Date : </strong>{row.date.d}</div>
+                                    <div className="f-100"><strong>Time : </strong>{row.date.t}</div>
                                 </div>
-                                <div className="cell">
+                                <div className="cell flex-end">
                                     <span className="dot"></span>
                                     <span>{row.status}</span> 
                                     <span className="detail-page-link"><i className="fas fa-angle-right"></i></span>
@@ -65,4 +58,4 @@ class Accounts extends Component {
 }
 
 
-export default withRouter(Accounts);
+export default withRouter(AccountsPage);

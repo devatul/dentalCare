@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../redux/home/actions';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import AccountsPage from '../components/AccountsPage';
+import InvoicePage from '../components/InvoicePage';
 
 
-class Home extends Component {
+class Invoice extends Component {
   state = {
     userDate:{},
     collapsed: false
@@ -19,11 +19,11 @@ class Home extends Component {
   render() {
     let {collapsed} = this.state;
     return (
-      <div  id="app" className={`app app-home ${collapsed ? 'collapsed' : ''}`}>
+      <div  id="app" className={`app app-invoice ${collapsed ? 'collapsed' : ''}`}>
         <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
         <div className="main-page">
           <Header />
-          <AccountsPage {...this.props}/>
+          <InvoicePage {...this.props}/>
         </div>
       </div>
     );
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Invoice));

@@ -5,12 +5,14 @@ import {menuData, menuBottomData} from '../constants'
 
 class Header extends Component {
   render() {
+    console.log('sssssssss',this.props);
+    
     return (
       <div className="header-wrapper">
         <div className="header">
             <div className="profile-sec">
                 <span className="icon bell"><i className="far fa-bell"></i></span>
-                <span className="icon">
+                <span className="icon" onClick={()=>this.props.history.push('/user')}>
                     <i className="fas fa-user-circle"></i>
                     {/* <img src={profileImg} /> */}
                 </span>

@@ -1,0 +1,39 @@
+.content-header{
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+    .cell{
+        display: flex;
+        flex-basis: 100%;
+        align-items: center;
+        font-size: 1.3rem;
+        span{
+            padding: 10px;
+        }
+    }
+}
+.content-body{
+    .card{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 10px;
+        background:#fff;
+        margin: 30px 0;
+        border-radius: 3px;
+        .cell{
+            display: flex;
+            flex-basis: 100%;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            span{
+                padding: 10px;
+            }
+        }
+    }
+}
+
+.flex-end{
+    justify-content: flex-end;
+}

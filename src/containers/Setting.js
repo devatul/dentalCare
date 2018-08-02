@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../redux/home/actions';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import AccountsPage from '../components/AccountsPage';
+import SettingPage from '../components/SettingPage';
 
 
-class Home extends Component {
+class Setting extends Component {
   state = {
     userDate:{},
     collapsed: false
@@ -23,7 +23,7 @@ class Home extends Component {
         <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
         <div className="main-page">
           <Header />
-          <AccountsPage {...this.props}/>
+          <SettingPage {...this.props}/>
         </div>
       </div>
     );
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Setting));

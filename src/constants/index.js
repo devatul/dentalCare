@@ -14,33 +14,30 @@ export const menuBottomData = [
 export const accounts = {
     title: 'Accounts',
     searchFields:[],
+    headers:['Name', 'Date', 'Status'],
     rows : [
         {
             name:'ABC',
             image:'',
-            date:'9 Mar 2018',
-            time: '3:00PM - 9:00AM',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
             name:'ABC',
             image:'',
-            date:'9 Mar 2018',
-            time: '3:00PM - 9:00AM',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
             name:'ABC',
             image:'',
-            date:'9 Mar 2018',
-            time: '3:00PM - 9:00AM',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
             name:'ABC',
             image:'',
-            date:'9 Mar 2018',
-            time: '3:00PM - 9:00AM',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
     ]
@@ -49,7 +46,42 @@ export const dashboard = {
     title: 'Dashboard'
 }
 export const invoice = {
-    title: 'Invoice'
+    title: 'Invoice',
+    headers:["", 'Patient', 'Issued Date', 'Status', 'Due Now', ""],
+    rows : [
+        {
+            invoiceNo:'',
+            name:'ABC',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            invoiceNo:'',
+            name:'ABC',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            invoiceNo:'',
+            name:'ABC',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            invoiceNo:'',
+            name:'ABC',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+    ]
 }
 export const reports = {
     title: 'Reports'
