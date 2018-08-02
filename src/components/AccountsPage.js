@@ -44,7 +44,9 @@ class AccountsPage extends Component {
                                 <div className="cell flex-end">
                                     <span className="dot"></span>
                                     <span>{row.status}</span> 
-                                    <span className="detail-page-link"><i className="fas fa-angle-right"></i></span>
+                                    <span className="detail-page-link" onClick={()=>this.props.history.push('/accountsdetails')}>
+                                        <i className="fas fa-angle-right"></i>
+                                    </span>
                                 </div>
                             </div>
                         )

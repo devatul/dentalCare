@@ -9,5 +9,98 @@
             }
         }
     }
-    
+
+}
+
+.account-details{
+    .banner{
+        height: 400px;
+        background: #fff;
+        margin: 20px 0;
+        .top-bg{
+            background: #27acd9;
+            height: 150px;
+            width: 100%;
+        }
+        .bottom-bg{
+            width: 100%;
+            height: 200px;
+        }
+        .menu-bar{
+            height: 50px;
+            // width: 100%;
+            padding: 0 50px;
+            .item{
+                display: inline-block;
+                width: 120px;
+                align-items: center;
+                // height: 100%;
+                padding: 14px;
+                text-align: center;
+                cursor: pointer;
+                &.active{
+                 border-bottom:2px solid #27acd9;
+                }
+            }
+        }
+        .profile{
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            margin-top: 60px;
+            margin-left: 100px;
+            text-align: center;
+            .img{
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background: aliceblue;
+                display: block;
+                margin: 15px auto;
+            }
+        }
+        .rect{
+            position: absolute;
+            width: 400px;
+            background: #fff;
+            height: 283px;
+            margin-left: 598px;
+            margin-top: 36px;
+        }
+    }
+    .box-wrapper{
+        width: 50%;
+        display: inline-block;
+        padding: 10px;
+        .box{
+            // width: 90%;
+            background: #fff;
+            padding: 30px;
+            .page-title{
+                display: flex;
+                justify-content: space-between;
+            }
+            .edit{
+                padding: 10px
+            }
+            .data-display{
+                margin: 30px 0;
+                .data-label{
+                    color: gray;
+                }
+                .text{
+                    font-size: 1.3rem;
+
+                }
+            }
+            .password-btn{
+               button{
+                background: #2fa695;
+                color: #fff;
+                padding: 12px 25px;
+                font-size: 1.2rem;
+               }
+            }
+        }
+    }
 }

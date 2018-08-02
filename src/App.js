@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import store from './redux/store';
-import {accounts, dashboard, invoice, settings,reports, userData} from './constants';
+import {accounts, dashboard, invoice, settings,reports, userData, accountsDetalsData} from './constants';
 
 const Loading = () => <div>Loading...</div>;
 
@@ -19,6 +19,10 @@ const Invoice = Loadable({
 });
 const Accounts = Loadable({
   loader: () => import('./containers/Accounts'),
+  loading: Loading,
+});
+const AccountsDetails = Loadable({
+  loader: () => import('./containers/AccountDetails'),
   loading: Loading,
 });
 const Reports = Loadable({
@@ -49,6 +53,7 @@ class App extends Component {
             <Route exact path="/dashboard" render={(props)=><Dashboard {...props} data={dashboard} />} />
             <Route exact path="/invoice" render={(props)=><Invoice {...props} data={invoice} />} />
             <Route exact path="/accounts" render={(props)=><Accounts {...props} data={accounts} />} />
+            <Route exact path="/accountsdetails" render={(props)=><AccountsDetails {...props} data={accountsDetalsData} />} />
             <Route exact path="/reports" render={(props)=><Reports {...props} data={reports} />} />
             <Route exact path="/settings" render={(props)=><Settings {...props} data={settings} />} />
             <Route exact path="/user" render={(props)=><User {...props} data={userData} />} />

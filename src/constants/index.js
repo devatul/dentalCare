@@ -42,6 +42,9 @@ export const accounts = {
         },
     ]
 }
+export const accountsDetalsData = {
+    userName:'Bertie Nichols' 
+}
 export const dashboard = {
     title: 'Dashboard'
 }
