@@ -3,13 +3,13 @@
     position: fixed;
     left: 0;
 }
-.sibebar{
+.sidebar{
     background: $sidebar-bg;
     float: left;
     height: 100vh;
     width: 187px;
-    max-width: $sidebar-full-width !important;
-    min-width: $sidebar-full-width !important;
+    max-width: $sidebar-full-width;
+    min-width: $sidebar-full-width;
     transition: width 1s  max-width 1s  min-width 1s;
     .content-wrapper{
         padding: 0 10px;
@@ -26,6 +26,11 @@
         align-items: center;
         margin: 1rem 0;
         cursor:pointer;
+        border-radius: 40px;
+        padding: 5px 10px;
+        &.active{
+            background: rgba(14, 157, 214, 0.57);
+        }
         .icon{
             display: inline-block;
             font-size: 1.7rem;
@@ -39,9 +44,9 @@
     }
 }
 .collapsed{
-    .sibebar{
-        max-width: $sidebar-small-width !important;
-        min-width: $sidebar-small-width !important;
+    .sidebar{
+        max-width: $sidebar-small-width;
+        min-width: $sidebar-small-width;
         .menu-item{
             display: block;
             .icon{
@@ -91,9 +96,9 @@
 }
 
 @media only screen and (max-width: 900px) {
-    .sibebar{
-        max-width: $sidebar-small-width !important;
-        min-width: $sidebar-small-width !important;
+    .collapsed .sidebar, .sidebar{
+        max-width: $sidebar-small-width;
+        min-width: $sidebar-small-width;
         .menu-item{
             display: block;
             .icon{
@@ -109,9 +114,12 @@
     }
 }
 @media only screen and (max-width: 600px) {
-    .sibebar{
-        max-width: $sidebar-x-small-width !important;
-        min-width: $sidebar-x-small-width !important;
+    .collapsed .sidebar, .sidebar{
+        max-width: $sidebar-x-small-width;
+        min-width: $sidebar-x-small-width;
+        .content-wrapper{
+            padding: 0px;
+        }
         .menu-item{
             margin: .5rem 0;
             .icon{

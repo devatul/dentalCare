@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default ({menuItems, onClick}) => {
+export default ({menuItems, onClick, activeRoute}) => {
     let menu = [];
+    
     menuItems.map((m, i)=>{
-        menu.push(<div key={i} className="menu-item" onClick={()=>onClick(m.link)}>
+        menu.push(<div key={i} className={`menu-item`} onClick={()=>onClick(m.link)}>
         <div className="icon">
             <i className={`fas ${m.icon}`}></i>
         </div>

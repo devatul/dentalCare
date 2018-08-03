@@ -37,7 +37,7 @@ class UserPage extends Component {
                 <hr/>
                 <h1>Personal Info</h1>
                 <div className="part-3">
-                    <div className="form-field">
+                    <div className="form-field first">
                             <div className="field-label">Home Phone</div>
                             <FormControl 
                             type="text" 
@@ -51,7 +51,7 @@ class UserPage extends Component {
                             placeholder="Mobile Phone"
                             />
                         </div>
-                        <div className="form-field">
+                        <div className="form-field last">
                             <div className="field-label">Work Phone</div>
                             <FormControl 
                             type="text" 
@@ -78,7 +78,7 @@ class UserPage extends Component {
                     />
                 </div>
                 <div className="part-3">
-                    <div className="form-field">
+                    <div className="form-field first">
                         <div className="field-label">City</div>
                         <FormControl 
                         type="text" 
@@ -92,7 +92,7 @@ class UserPage extends Component {
                         placeholder="state"
                         />
                     </div>
-                    <div className="form-field">
+                    <div className="form-field last">
                         <div className="field-label">Zip</div>
                         <FormControl 
                         type="text" 

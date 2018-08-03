@@ -4,17 +4,20 @@ import MenuItems from './MenuItems';
 import {menuData, menuBottomData} from '../constants'
 
 class Sidebar extends Component {
+    handleClick = (link) =>{
+        this.props.history.push(link)
+    }
   render() {
       let {collapsed} = this.props;
     return (
       <div className="sidebar-wrapper">
-          <div className="sibebar">
+          <div className="sidebar">
             <div className="content-wrapper">
                 <div className="menu">
-                    <MenuItems menuItems={menuData} onClick={(link)=>this.props.history.push(link)}/>
+                    <MenuItems menuItems={menuData} onClick={this.handleClick}/>
                 </div>
                 <div className="menu-bottom">
-                    <MenuItems menuItems={menuBottomData} onClick={(link)=>this.props.history.push(link)}/>
+                    <MenuItems menuItems={menuBottomData} onClick={this.handleClick} />
                 </div>
             </div>
         </div>

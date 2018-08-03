@@ -8,7 +8,7 @@ export const menuData = [
 ]
 
 export const menuBottomData = [
-    {label:'Help', icon:'fa-question-circle'}
+    {label:'Help', icon:'fa-question-circle', link:'/help'}
 ]
 
 export const accounts = {
