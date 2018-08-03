@@ -18,7 +18,7 @@ html, body {
 }
 .main-page{
   height: 100vh;
-  margin-left: 240px;
+  margin-left: $sidebar-full-width;
 }
 
 .header-wrapper{
@@ -31,7 +31,7 @@ html, body {
 }
 .collapsed{
   .main-page{
-    margin-left: 72px;
+    margin-left: $sidebar-small-width;
   }
 }
 .page-title{
@@ -64,9 +64,22 @@ html, body {
 .nav-tabs {
   border-bottom: 1px solid #fff;
 }
+h1{
+  font-size: 2rem;
+  margin: 15px 0;
+}
 
 @media only screen and (max-width: 900px) {
   .main-page{
-    margin-left: 72px;
+    margin-left: $sidebar-small-width;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .main-page{
+    margin-left: $sidebar-x-small-width;
+  }
+  h1{
+    font-size: 1.5rem;
+    margin: 10px 0;
   }
 }

@@ -5,6 +5,8 @@
     }
     .desc{
         color: gray;
+        padding: 10px 20px;
+        font-size: .9rem;
     }
     .billing{
         margin-top: 1rem;
@@ -38,13 +40,20 @@
     }
     .payment-reminder{
         .form{
+            .form-field{
+                display: flex;
+            }
             .field-label{
                 width: 40%;
-                float: left;
+                display: inline-block;
             }
             .input-field{
                 width: 60%;
-                float: left;
+                display: inline-block;
+                span{
+                    margin: 5px 0;
+                    display: block;
+                }
             }
         }
     }
@@ -74,5 +83,11 @@
             padding: 10px;
             transition: height 1s;
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .payment-reminder{
+
     }
 }

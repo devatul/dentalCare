@@ -43,7 +43,7 @@ class SettingPage extends Component {
                         <div className="deposits">
                             <section className="form">
                                 <h2>Deposit information</h2>
-                                <div className="disc">This is the bank account in which the current clinic should receive its funds.</div>
+                                <div className="desc">This is the bank account in which the current clinic should receive its funds.</div>
                                 <div className="form-field">
                                     <div className="field-label">Account number</div>
                                     <FormControl 
@@ -71,7 +71,8 @@ class SettingPage extends Component {
                                 <div className="content">
                                     <section className="form">
                                         <h2>General settings</h2>
-                                        <div className="disc">Here you can personalize the clinic's view of the web app</div>
+                                        <div className="desc
+                                        ">Here you can personalize the clinic's view of the web app</div>
                                         <div className="form-field">
                                             <div className="field-label">Clinic Logo</div>
                                             <div className="field-label">
@@ -166,12 +167,10 @@ class SettingPage extends Component {
                                     <div className="payment-reminder">
                                         <section className="form">
                                             <h2>Payment Remainder Scheduler</h2>
-                                            <div className="disc">Here you can personalize the clinic's view of the web app</div>
+                                            <div className="desc">Here you can personalize the clinic's view of the web app</div>
                                             <div className="form-field text-center">
                                                 <div className="field-label">Current Task:</div>
-                                                <div className="input-field">
-                                                    none
-                                                </div>
+                                                <div className="input-field">none</div>
                                             </div>
                                             <div className="form-field">
                                                 <div className="field-label">Description:</div>
@@ -185,10 +184,10 @@ class SettingPage extends Component {
                                             <div className="form-field">
                                                 <div className="field-label">Repeat every:</div>
                                                 <div className="input-field part-2">
-                                                <FormControl 
-                                                type="number" 
-                                                placeholder="1"
-                                                />
+                                                <span>
+                                                    <FormControl type="number" placeholder="1"/>
+                                                </span>
+                                                <span>
                                                 <FormControl  componentClass="select" placeholder="select">
                                                     <option value="select">select</option>
                                                     <option value="red">hour</option>
@@ -196,6 +195,7 @@ class SettingPage extends Component {
                                                     <option value="green">week</option>
                                                     <option value="green">month</option>
                                                 </FormControl>
+                                                </span>
                                                 </div>
                                             </div>
                                             <div className="submit-button">

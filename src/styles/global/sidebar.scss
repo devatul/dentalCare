@@ -8,8 +8,8 @@
     float: left;
     height: 100vh;
     width: 187px;
-    max-width: 240px !important;
-    min-width: 240px !important;
+    max-width: $sidebar-full-width !important;
+    min-width: $sidebar-full-width !important;
     transition: width 1s  max-width 1s  min-width 1s;
     .content-wrapper{
         padding: 0 10px;
@@ -30,6 +30,7 @@
             display: inline-block;
             font-size: 1.7rem;
             text-align: center;
+            width: 34px;
         }
         .label{
             display: inline-block;
@@ -39,8 +40,8 @@
 }
 .collapsed{
     .sibebar{
-        max-width: 72px !important;
-        min-width: 72px !important;
+        max-width: $sidebar-small-width !important;
+        min-width: $sidebar-small-width !important;
         .menu-item{
             display: block;
             .icon{
@@ -88,14 +89,15 @@
         }
     }
 }
+
 @media only screen and (max-width: 900px) {
     .sibebar{
-        max-width: 72px !important;
-        min-width: 72px !important;
+        max-width: $sidebar-small-width !important;
+        min-width: $sidebar-small-width !important;
         .menu-item{
             display: block;
             .icon{
-                
+                width: auto;
             }
             .label{
                 display: none;
@@ -106,3 +108,19 @@
         display: none;
     }
 }
+@media only screen and (max-width: 600px) {
+    .sibebar{
+        max-width: $sidebar-x-small-width !important;
+        min-width: $sidebar-x-small-width !important;
+        .menu-item{
+            margin: .5rem 0;
+            .icon{
+                font-size: 1rem;
+            }
+        }
+    }
+    .resize-btn{
+        display: none;
+    }
+}
+
