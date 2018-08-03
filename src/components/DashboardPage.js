@@ -44,22 +44,24 @@ class DashboardPage extends Component {
             </div>
             <div className="alert">Tasks needing your attention.</div>
             <h3>Recent Payments</h3>
-            <div className="content-header">
-                <div className="cell">
-                    <span>{header[0]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
+            <div className="table-wrapper">
+                <div className="content-header">
+                    <div className="cell">
+                        <span>{header[0]}</span>
+                        <span><i className="fas fa-angle-down"></i></span>
+                    </div>
+                    <div className="cell">
+                        <span>{header[1]}</span>
+                        <span><i className="fas fa-angle-down"></i></span>
+                    </div>
+                    <div className="cell">
+                        <span>{header[2]}</span>
+                        <span><i className="fas fa-angle-down"></i></span>
+                    </div>
                 </div>
-                <div className="cell">
-                    <span>{header[1]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
+                <div className="content-body">
+                    {this.getTableBody()}
                 </div>
-                <div className="cell">
-                    <span>{header[2]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
-            </div>
-            <div className="content-body">
-                {this.getTableBody()}
             </div>
             <div className="invoice-balance">
                 <div className="title">Invoices Balance</div>

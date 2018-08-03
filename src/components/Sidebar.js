@@ -18,7 +18,7 @@ class Sidebar extends Component {
                 </div>
             </div>
         </div>
-        <div className="resize-btn" onClick={()=>this.props.toggleSidebar()}>
+        <div className={`resize-btn`} onClick={()=>this.props.toggleSidebar()}>
             <span className="expand-btn">
                 {collapsed ? <i class="fas fa-chevron-right"></i> : <i class="fas fa-chevron-left"></i>}
             </span>

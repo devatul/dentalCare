@@ -7,6 +7,7 @@
         color: gray;
     }
     .billing{
+        margin-top: 1rem;
         .button-wrapper{
             margin: 10px  0;
             button{
@@ -22,10 +23,10 @@
         }
     }
     .deposits{
-        
+        margin-top: 1rem;
     }
     .clinic-setting{
-        padding: 10px;
+        margin-top: 1rem;
         .manage-template{
             text-align: center;
             button{
@@ -37,11 +38,6 @@
     }
     .payment-reminder{
         .form{
-            .form-field{
-                // width: 100%;
-                // max-width: 400px;
-                // margin: 20px auto;
-            }
             .field-label{
                 width: 40%;
                 float: left;

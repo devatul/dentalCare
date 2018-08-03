@@ -21,6 +21,9 @@
             background: #27acd9;
             height: 150px;
             width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 60px;
         }
         .bottom-bg{
             width: 100%;
@@ -28,13 +31,11 @@
         }
         .menu-bar{
             height: 50px;
-            // width: 100%;
             padding: 0 50px;
             .item{
                 display: inline-block;
                 width: 120px;
                 align-items: center;
-                // height: 100%;
                 padding: 14px;
                 text-align: center;
                 cursor: pointer;
@@ -43,13 +44,15 @@
                 }
             }
         }
+        .profile-wrapper, .rect-wrapper{
+            width: 50%;
+            float: left;
+        }
         .profile{
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            margin-top: 60px;
-            margin-left: 100px;
+            min-width: 150px;
+            width: 50%;
             text-align: center;
+            margin: auto;
             .img{
                 width: 150px;
                 height: 150px;
@@ -60,36 +63,45 @@
             }
         }
         .rect{
-            position: absolute;
-            width: 350px;
+            width: 80%;
             background: #fff;
             height: 282px;
-            margin-left: 467px;
-            margin-top: 53px;
+            display: block;
+            min-width: 150px;
+            max-width: 300px;
+            margin: auto;
         }
     }
     .box-wrapper{
         width: 50%;
-        display: inline-block;
-        padding: 10px;
+        display: block;
+        float: left;
+        &.col-left{
+            padding-right: 10px;
+        }
+        &.col-right{
+            padding-left: 10px;
+        }
         .box{
-            // width: 90%;
             background: #fff;
-            padding: 30px;
+            padding: 0px 0px 20px 20px;
+            margin: 15px 0;
             .page-title{
                 display: flex;
                 justify-content: space-between;
             }
             .edit{
-                padding: 10px
+                padding: 10px;
+                cursor: pointer;
             }
             .data-display{
                 margin: 30px 0;
                 .data-label{
                     color: gray;
+                    font-size: 0.8rem;
                 }
                 .text{
-                    font-size: 1.3rem;
+                    font-size: 1rem;
 
                 }
             }
@@ -97,9 +109,26 @@
                button{
                 background: #2fa695;
                 color: #fff;
-                padding: 12px 25px;
-                font-size: 1.2rem;
+                padding:8px 20px;
+                font-size: 1rem;
                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .account-details{
+        .box-wrapper{
+            width: 100%;
+            padding: 0px !important;
+        }
+        .banner{
+            .profile-wrapper{
+                width: 100%;
+            }
+            .rect-wrapper{
+                display: none !important;
             }
         }
     }

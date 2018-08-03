@@ -25,7 +25,7 @@ html, body {
   padding: 10px;
 }
 .page-body-wrapper{
-  width: 100%;
+  width: 95%;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -59,4 +59,14 @@ html, body {
 }
 .j-c-s-b{
   justify-content: space-between;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #fff;
+}
+
+@media only screen and (max-width: 900px) {
+  .main-page{
+    margin-left: 72px;
+  }
 }

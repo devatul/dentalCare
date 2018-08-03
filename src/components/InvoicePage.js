@@ -86,34 +86,20 @@ class InvoicePage extends Component {
             <div className="search-box-wrapper">
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
             </div>
-            <div className="content-header">
-                <div className="cell f-30">
-                    <span>{header[0]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
+            <div className="table-wrapper">
+                <div className="content-header">
+                {
+                    header.map((h, i)=>{
+                        return(<div className={`cell ${i===0 ? 'f-30' : ''} ${i===header.length-1 ? 'f-30 text-right' : ''}`}>
+                        <span>{h}</span>
+                        <span><i className="fas fa-angle-down"></i></span>
+                    </div>)
+                    })
+                }
                 </div>
-                <div className="cell">
-                    <span>{header[1]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
+                <div className="content-body">
+                    {this.getTableBody()}
                 </div>
-                <div className="cell">
-                    <span>{header[2]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
-                <div className="cell">
-                    <span>{header[3]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
-                <div className="cell">
-                    <span>{header[4]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
-                <div className="cell f-30 text-right">
-                    <span>{header[6]}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>
-            </div>
-            <div className="content-body">
-                {this.getTableBody()}
             </div>
             <div className="paginat">
                 <ButtonGroup>

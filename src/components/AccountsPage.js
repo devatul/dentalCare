@@ -20,15 +20,16 @@ class AccountsPage extends Component {
             <div className="search-box-wrapper">
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
             </div>
-            <div className="content-header">
-                {data.headers.map((header)=>{
-                    return (<div className="cell">
-                    <span>{header}</span>
-                    <span><i className="fas fa-angle-down"></i></span>
-                </div>)
-                })}
-            </div>
-            <div className="content-body">
+            <div className="table-wrapper">
+                <div className="content-header">
+                    {data.headers.map((header)=>{
+                        return (<div className="cell">
+                        <span>{header}</span>
+                        <span><i className="fas fa-angle-down"></i></span>
+                    </div>)
+                    })}
+                </div>
+                <div className="content-body">
                 {
                     data.rows.map((row)=>{
                         return (
@@ -54,6 +55,7 @@ class AccountsPage extends Component {
                         )
                     })
                 }
+                </div>
             </div>
         </div>
       </div>

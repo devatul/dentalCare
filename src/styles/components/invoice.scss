@@ -6,8 +6,8 @@
         button{
             background: gray;
             border: 0;
-            padding: 10px 20px;
-            font-size: 1.3rem;   
+            padding: 10px 15px;
+            font-size: 1rem;   
         }
     }
     .summary{
@@ -38,6 +38,33 @@
             color: #fff;
             margin: 15px;  
         }
+    } 
+}
+
+@media only screen and (max-width: 600px) {
+    .invoice{
+        .range-wrapper{
+            button{
+                padding: 5px 5px;
+                font-size: .7rem;   
+            }
+        }
+        .summary{
+            margin: 1rem 0;
+        }
+        .total{
+            .amt{
+                font-size: 1.2rem;
+            }
+            .text{
+                font-size: .8rem;
+            }
+        }
+        .inoive-buttons{
+            button{
+                padding: 5px 10px;
+                font-size: .7rem;   
+            }
+        }
     }
-    
 }
