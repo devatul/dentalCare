@@ -12,30 +12,27 @@ export const menuBottomData = [
 ]
 
 export const accounts = {
-    title: 'Accounts',
-    searchFields:[],
-    headers:['Name', 'Date', 'Status'],
     rows : [
         {
-            name:'ABC',
+            name:'ABC-1',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
-            name:'ABC',
+            name:'ABC-2',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
-            name:'ABC',
+            name:'ABC-3',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
-            name:'ABC',
+            name:'ABC-4',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'

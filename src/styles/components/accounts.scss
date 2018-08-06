@@ -86,6 +86,8 @@
             background: #fff;
             padding: 0px 0px 20px 20px;
             margin: 15px 0;
+            border: 1px solid rgba(128, 128, 128, 0.52);
+            border-radius: 4px;
             .page-title{
                 display: flex;
                 justify-content: space-between;
@@ -117,6 +119,27 @@
     }
 }
 
+.nodisplay {
+    display: none;
+}
+
+#account {
+    position: relative;
+    width: 100%;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+}
+
+#account-page {
+    display:inline-block;
+}
+
+#account-detail-page {
+    float:left;
+}
 @media only screen and (max-width: 600px) {
     .account-details{
         .box-wrapper{

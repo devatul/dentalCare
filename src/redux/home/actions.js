@@ -1,6 +1,6 @@
 import * as actions from '../../redux/actions';
 import * as api from '../../redux/api';
-import {sidebarData, userData, projectData, tabsData} from '../../constants';
+import {userData} from '../../constants';
 
 
 export const getUserData = () => {

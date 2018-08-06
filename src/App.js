@@ -1,5 +1,8 @@
+import '@fortawesome/fontawesome-free/css/all.css';
+import 'jquery-ui-bundle/jquery-ui.css';
+import 'jquery-ui-bundle';
 import './styles/index.scss';
-
+import 'whatwg-fetch';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -52,7 +55,7 @@ class App extends Component {
             <Route exact path="/" render={(props)=><Dashboard {...props} data={dashboard} />} />
             <Route exact path="/dashboard" render={(props)=><Dashboard {...props} data={dashboard} />} />
             <Route exact path="/invoice" render={(props)=><Invoice {...props} data={invoice} />} />
-            <Route exact path="/accounts" render={(props)=><Accounts {...props} data={accounts} />} />
+            <Route exact path="/accounts" render={(props)=><Accounts {...props}/>} />
             <Route exact path="/accountsdetails" render={(props)=><AccountsDetails {...props} data={accountsDetalsData} />} />
             <Route exact path="/reports" render={(props)=><Reports {...props} data={reports} />} />
             <Route exact path="/settings" render={(props)=><Settings {...props} data={settings} />} />
