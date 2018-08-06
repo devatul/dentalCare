@@ -14,24 +14,28 @@ export const menuBottomData = [
 export const accounts = {
     rows : [
         {
+            id:1,
             name:'ABC-1',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
+            id:2,
             name:'ABC-2',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
+            id:3,
             name:'ABC-3',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
+            id:4,
             name:'ABC-4',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},

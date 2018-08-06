@@ -34,11 +34,9 @@ export const loadMoreAccountsData = (params) => {
       //   console.log('Error', err);
       // })
       dispatch(actions.getAccountsRequest());
-
       setTimeout(()=>{
-        console.log('11233324452345');
         dispatch(actions.loadMoreAccountsDataSuccess(accounts))
-      }, 2000);
+      },1000);
       
     });
   };

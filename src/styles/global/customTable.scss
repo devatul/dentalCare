@@ -25,10 +25,22 @@
         justify-content: space-between;
         padding: 25px 10px;
         // background:#fff;
-        background: #c3e4f6;
+        background: #e0eff7;
         margin: 30px 0;
         border-radius: 3px;
         min-width: 600px;
+        .checkbox-wrapper{
+            display: none;  
+        }
+        &:hover{
+            background: #bee2f5;
+            .checkbox-wrapper{
+                display: block;
+            }
+        }
+        &.selected{
+            background: #2996d0;
+        }
         .cell{
             display: flex;
             flex-basis: 100%;

@@ -46,7 +46,13 @@ const getAccountsError = (state, action) => update(state, {
 
 const loadMoreAccountsDataSuccess = (state, action) => {
   let data = cloneDeep(state.accounts.data);
-  data.rows = [...data.rows, ...action.payload.rows];  
+  let ln = data.rows.lenngth;
+  let rows = action.payload.rows;
+  rows.map((r, i)=>{
+    r.id = ln + i + 1;
+    // r.name = 'ABC-'+ ln + i + 1
+  })
+  data.rows = [...data.rows, ...rows];  
   return update(state, {
     accounts: {
       data:      {$set: data},

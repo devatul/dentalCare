@@ -5,8 +5,6 @@ import {menuData, menuBottomData} from '../constants'
 
 class Header extends Component {
   render() {
-    console.log('sssssssss',this.props);
-    
     return (
       <div className="header-wrapper">
         <div className="header">

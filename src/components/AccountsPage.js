@@ -4,11 +4,12 @@ import SearchInput, {createFilter} from 'react-search-input';
 import $ from "jquery";
 
 
-const headers = ['Name', 'Date', 'Status'];
+const headers = ['', 'Name', 'Date', 'Status'];
 class AccountsPage extends Component {
     state = {
         searchTerm: '',
         tableStatus:{orderon:'', orderby:'',page:1,  range:10},
+        selected: [],
     }
     componentDidMount(){
         $(document).scroll(()=>{
@@ -26,14 +27,34 @@ class AccountsPage extends Component {
     searchUpdated = (term) => {
         this.setState({searchTerm: term})
     }
+    handleChecked = (id)=>{
+        let {selected} = this.state;
+        if(selected.includes(id)){
+            var index = selected.indexOf(id);
+            if (index > -1) {
+                selected.splice(index, 1);
+            }
+        }else{
+            selected.push(id);
+        }
+        this.setState({selected});
+    }
     getTableBody = () => {
         let {accountsData}= this.props;
         let {isLoading, data} = accountsData;
         let rows = [];
+        let {selected} = this.state;
+        
         if(data.rows && data.rows.length){
             data.rows.map((row, i)=>{
+                let checked = selected.includes(row.id);
                 rows.push(
-                    <div key={i+1} className="card">
+                    <div key={i+1} className={`card ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
+                        <div className="cell f-10">
+                            <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
+                                <input type="checkbox" checked={checked}/>
+                            </span>
+                        </div>
                         <div className="cell">
                             <span><i className="fas fa-user-circle"></i></span>
                             <span>{row.name}</span>
@@ -93,8 +114,8 @@ class AccountsPage extends Component {
             </div>
             <div className="table-wrapper">
                 <div className="content-header">
-                    {headers.map((header)=>{
-                        return (<div className="cell" onClick={()=>this.sortTable(header)}>
+                    {headers.map((header, i)=>{
+                        return (<div className={`cell ${ i === 0 ? 'f-10' : ''}`} onClick={()=>this.sortTable(header)}>
                         <span>{header}</span>
                         <span><i className={`fas fa-angle-${tableStatus.orderon === header && tableStatus.orderby === 'desc' ? 'up':'down'}`}></i></span>
                     </div>)
