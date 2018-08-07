@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import $ from "jquery";
 import {getUserData} from '../redux/home/actions';
-import {getAccountsData, loadMoreAccountsData} from '../redux/accounts/actions';
+import {getAccountsData, loadMoreAccountsData, sortAccountsData} from '../redux/accounts/actions';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import AccountsPage from '../components/AccountsPage';
@@ -40,10 +40,10 @@ class Accounts extends Component {
         <div className="main-page">
           <Header />
           <div id="account">
-              <div id="account-detail" class="page" >
+              <div id="account-detail" className="page" >
                 <AccountsPage {...this.props} pageDetails={this.pageDetails}/>
               </div>
-              <div id="account-detail-page" class="page nodisplay">
+              <div id="account-detail-page" className="page nodisplay">
                 {accountDetails && <AccountDetailsPage  data={accountDetails} onToggleSlide={this.goToAccountPage}/>}
               </div>
           </div>
@@ -70,7 +70,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     loadMoreAccountsData: (params)=>{
       return dispatch(loadMoreAccountsData(params));
-    }
+    },
+    sortAccountsData:(params)=>{
+      return dispatch(sortAccountsData(params));
+    },
   }
 };
 

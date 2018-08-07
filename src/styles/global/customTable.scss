@@ -19,6 +19,7 @@
     }
 }
 .content-body{
+    overflow: hidden;
     .card{
         display: flex;
         align-items: center;
@@ -57,6 +58,22 @@
 .flex-end{
     justify-content: flex-end;
 }
+
+.come-in {
+    transform: translateY(150px);
+    animation: come-in 0.8s ease forwards;
+  }
+  .come-in:nth-child(odd) {
+    animation-duration: 0.6s;
+  }
+  .already-visible {
+    transform: translateY(0);
+    animation: none;
+  }
+  
+  @keyframes come-in {
+    to { transform: translateY(0); }
+  }
 
 @media only screen and (max-width: 1100px) {
     .content-header{

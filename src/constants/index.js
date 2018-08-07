@@ -25,14 +25,14 @@ export const accounts = {
             name:'ABC-2',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
-            status: 'Approved'
+            status: 'New'
         },
         {
             id:3,
             name:'ABC-3',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
-            status: 'Approved'
+            status: 'Pending'
         },
         {
             id:4,
@@ -56,32 +56,36 @@ export const invoice = {
     headers:["", 'Patient', 'Issued Date', 'Status', 'Due Now', ""],
     rows : [
         {
+            id:1,
             invoiceNo:'',
-            name:'ABC',
+            name:'ABC-1',
             image:'',
             dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
         {
+            id:2,
             invoiceNo:'',
-            name:'ABC',
+            name:'ABC-2',
             image:'',
             dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
-            status: 'Approved'
+            status: 'New'
         },
         {
+            id:3,
             invoiceNo:'',
-            name:'ABC',
+            name:'ABC-3',
             image:'',
             dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
-            status: 'Approved'
+            status: 'Pending'
         },
         {
+            id:4,
             invoiceNo:'',
-            name:'ABC',
+            name:'ABC-4',
             image:'',
             dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},

@@ -5,7 +5,7 @@ import * as constants from '../../redux/constants';
 
 
 const initialState = {
-    accounts: {
+    invoice: {
       data:      {},
       isLoading: false,
       isError:   false,
@@ -15,8 +15,8 @@ const initialState = {
 }
 
 // user data update
-const getAccountsRequest = (state, action) => update(state, {
-  accounts: {
+const getInvoiceRequest = (state, action) => update(state, {
+  invoice: {
     isLoading: {$set: true},
     isError:   {$set: false},
     isSuccess: {$set: false},
@@ -24,8 +24,8 @@ const getAccountsRequest = (state, action) => update(state, {
   }
 });
 
-const getAccountsSuccess = (state, action) => update(state, {
-  accounts: {
+const getInvoiceSuccess = (state, action) => update(state, {
+  invoice: {
     data:      {$set: action.payload},
     isLoading: {$set: false},
     isError:   {$set: false},
@@ -34,8 +34,8 @@ const getAccountsSuccess = (state, action) => update(state, {
   }
 });
 
-const getAccountsError = (state, action) => update(state, {
-  accounts: {
+const getInvoicesError = (state, action) => update(state, {
+  invoice: {
     isLoading: {$set: false},
     isSuccess: {$set: false},
     isError:   {$set: true},
@@ -44,8 +44,8 @@ const getAccountsError = (state, action) => update(state, {
 });
 
 
-const loadMoreAccountsDataSuccess = (state, action) => {
-  let data = cloneDeep(state.accounts.data);
+const loadMoreInvoiceDataSuccess = (state, action) => {
+  let data = cloneDeep(state.invoice.data);
   let rows = cloneDeep(action.payload.rows);
   let ln = data.rows.length;
   rows.map((r, i)=>{
@@ -54,7 +54,7 @@ const loadMoreAccountsDataSuccess = (state, action) => {
   })
   data.rows = [...data.rows, ...rows];  
   return update(state, {
-    accounts: {
+    invoice: {
       data:      {$set: data},
       isLoading: {$set: false},
       isError:   {$set: false},
@@ -64,11 +64,11 @@ const loadMoreAccountsDataSuccess = (state, action) => {
   });
 }
 
-const sortAccountsSuccess = (state, action) => {
-  let data = cloneDeep(state.accounts.data);
+const sortInvoiceSuccess = (state, action) => {
+  let data = cloneDeep(state.invoice.data);
   data.rows = action.payload;  
   return update(state, {
-    accounts: {
+    invoice: {
       data:      {$set: data},
       isLoading: {$set: false},
       isError:   {$set: false},
@@ -77,12 +77,11 @@ const sortAccountsSuccess = (state, action) => {
     }
   });
 }
-
   export default handleActions({
-    [constants.GET_ACCOUNTS_REQUEST]: getAccountsRequest,
-    [constants.GET_ACCOUNTS_SUCCESS]: getAccountsSuccess,
-    [constants.GET_ACCOUNTS_ERROR]:   getAccountsError,
-    [constants.LOAD_MORE_ACCOUNTS_SUCCESS]: loadMoreAccountsDataSuccess,
-    [constants.SORT_ACCOUNT_SUCCESS]: sortAccountsSuccess,
+    [constants.GET_INVOICE_REQUEST]: getInvoiceRequest,
+    [constants.GET_INVOICE_SUCCESS]: getInvoiceSuccess,
+    [constants.GET_INVOICE_ERROR]:   getInvoicesError,
+    [constants.LOAD_MORE_INVOICE_SUCCESS]: loadMoreInvoiceDataSuccess,
+    [constants.SORT_INVOICE_SUCCESS]: sortInvoiceSuccess,
   }, initialState);
   

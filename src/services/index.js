@@ -1,14 +1,6 @@
 
 
-const fetchAPI = (url='',queryParams={}, method='GET',body={}) =>{
-    let query = ''
-    for(var key in queryParams){
-        query+= key+'='+queryParams[key];
-    }
-    if(query !== ''){
-        url = url + '?'+query;
-
-    }
+const fetchAPI = (url='', method='GET',body={}) =>{
     return fetch(url, {
         method: method,
         body: JSON.stringify(body)

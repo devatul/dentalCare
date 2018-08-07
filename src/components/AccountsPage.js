@@ -3,8 +3,20 @@ import { withRouter } from 'react-router-dom';
 import SearchInput, {createFilter} from 'react-search-input';
 import $ from "jquery";
 
+$.fn.visible = function(partial) {            
+    var $t            = $(this),
+        $w            = $(window),
+        viewTop       = $w.scrollTop(),
+        viewBottom    = viewTop + $w.height(),
+        _top          = $t.offset().top,
+        _bottom       = _top + $t.height(),
+        compareTop    = partial === true ? _bottom : _top,
+        compareBottom = partial === true ? _top : _bottom;
+  
+    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+  };
 
-const headers = ['', 'Name', 'Date', 'Status'];
+const headers = ['Name', 'Date', 'Status'];
 class AccountsPage extends Component {
     state = {
         searchTerm: '',
@@ -17,6 +29,15 @@ class AccountsPage extends Component {
         })
     }
     handleOnScroll = () => {
+        let cards = $('.card');
+        cards.each(function(i, el) {
+            var el = $(el);
+            if (el.visible(true)) {
+                el.addClass("come-in"); 
+            } else {
+                el.removeClass("come-in");
+            }
+        }) 
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight) {
             let {tableStatus} = this.state;
             this.props.loadMoreAccountsData(tableStatus);
@@ -49,7 +70,7 @@ class AccountsPage extends Component {
             data.rows.map((row, i)=>{
                 let checked = selected.includes(row.id);
                 rows.push(
-                    <div key={i+1} className={`card ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
+                    <div key={i+1} className={`card come-in ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
                         <div className="cell f-10">
                             <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
                                 <input type="checkbox" checked={checked}/>
@@ -65,7 +86,7 @@ class AccountsPage extends Component {
                         </div>
                         <div className="cell j-c-s-b">
                             <span>
-                                <span className="dot"></span>
+                                <span className={`dot ${row.status}`}></span>
                                 <span>{row.status}</span> 
                             </span>
                             <span className="detail-page-link" onClick={()=>this.props.pageDetails(row)}>
@@ -77,7 +98,7 @@ class AccountsPage extends Component {
             })
         }else if(!isLoading){
             rows.push(
-                <div className="card">
+                <div key="no-data" className="card">
                     <div className="cell">
                         <span>No data available in table</span>
                     </div>
@@ -88,21 +109,27 @@ class AccountsPage extends Component {
     }
     sortTable = (column) => {
         let {tableStatus} = this.state;
+        let params = {orderon:column};
         if(tableStatus.orderon === column && tableStatus.orderby === 'desc' ){
             tableStatus.orderby = 'asc';
+            params.orderby = 'asc';
         }else if(tableStatus.orderon === column && tableStatus.orderby === 'asc' ){
             tableStatus.orderby = 'desc';
+            params.orderby = 'desc';
         }else{
             tableStatus.orderon = column;
             tableStatus.orderby = 'asc';
+            params.orderby = 'asc';
         }
-        this.props.getAccountsData(tableStatus);
+        params.data = this.props.accountsData.data.rows || []; // will remove this when integrate API
+        this.props.sortAccountsData(params);
         this.setState({tableStatus});
     }
   render() {
       let {accountsData}= this.props;
       let {isLoading, data} = accountsData;
-      let {tableStatus} = this.state;      
+      let {tableStatus} = this.state;    
+      const sortClass = name => tableStatus.orderon === name && tableStatus.orderby === 'desc' ? 'up':'down';
     return (
       <div className="page-body-wrapper">
         <div className="accounts">
@@ -114,16 +141,23 @@ class AccountsPage extends Component {
             </div>
             <div className="table-wrapper">
                 <div className="content-header">
-                    {headers.map((header, i)=>{
-                        return (<div className={`cell ${ i === 0 ? 'f-10' : ''}`} onClick={()=>this.sortTable(header)}>
-                        <span>{header}</span>
-                        <span><i className={`fas fa-angle-${tableStatus.orderon === header && tableStatus.orderby === 'desc' ? 'up':'down'}`}></i></span>
-                    </div>)
-                    })}
+                    <div className={`cell f-10 checkbox-header`}></div>
+                    <div className='cell' onClick={()=>this.sortTable('name')}>
+                        <span>Name</span>
+                        <span><i className={`fas fa-angle-${sortClass('name')}`}></i></span>
+                    </div>
+                    <div className='cell' onClick={()=>this.sortTable('date')}>
+                        <span>Date</span>
+                        <span><i className={`fas fa-angle-${sortClass('date')}`}></i></span>
+                    </div>
+                    <div className='cell' onClick={()=>this.sortTable('status')}>
+                        <span>Status</span>
+                        <span><i className={`fas fa-angle-${sortClass('status')}`}></i></span>
+                    </div>
                 </div>
                 <div className="content-body">
                 {this.getTableBody()}
-                {isLoading && <div className="loading"><i class="fas fa-spinner fa-spin"></i></div>}
+                {isLoading && <div className="loading"><i className="fas fa-spinner fa-spin"></i></div>}
                 </div>
             </div>
         </div>

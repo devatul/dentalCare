@@ -2,60 +2,66 @@ import {orderBy} from 'lodash';
 import * as actions from '../../redux/actions';
 import * as api from '../../redux/api';
 import fetchAPI from '../../services';
-import {accounts} from '../../constants';
+import {invoice} from '../../constants';
 
 
-export const getAccountsData = (params) => {
+export const getInvoiceData = (params) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // fetchAPI(api.accounts)
+      // fetchAPI(api.invoice)
       // .then((res)=>{
       //   console.log('response', res);
       // })
       // .catch((err)=>{
       //   console.log('Error', err);
       // })
-      dispatch(actions.getAccountsRequest());
+      dispatch(actions.getInvoiceRequest());
       setTimeout(()=>{
-        dispatch(actions.getAccountsSuccess(accounts))
+        dispatch(actions.getInvoiceSuccess(invoice))
       }, 2000);
       
     });
   };
 };
 
-export const loadMoreAccountsData = (params) => {
+export const loadMoreInvoiceData = (params) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // fetchAPI(api.loadMoreAccounts)
+      // fetchAPI(api.loadMoreInvoice)
       // .then((res)=>{
       //   console.log('response', res);
       // })
       // .catch((err)=>{
       //   console.log('Error', err);
       // })
-      dispatch(actions.getAccountsRequest());
+      dispatch(actions.getInvoiceRequest());
       setTimeout(()=>{
-        dispatch(actions.loadMoreAccountsDataSuccess(accounts))
+        dispatch(actions.loadMoreInvoiceDataSuccess(invoice))
       },1000);
       
     });
   };
 };
 
-export const sortAccountsData = (params) => {
+export const sortInvoiceData = (params) => {
   return (dispatch, getState) => {
+    console.log('params', params);
     
     return new Promise((resolve, reject) => {
-      // fetchAPI(api.sortAccounts)
+      // fetchAPI(api.sortInvoice)
       // .then((res)=>{
       //   console.log('response', res);
       // })
       // .catch((err)=>{
       //   console.log('Error', err);
       // })
+      // dispatch(actions.getAccountsRequest());
       let data = orderBy(params.data, [params.orderon], [params.orderby]);
-        dispatch(actions.sortAccountsSuccess(data));
+      console.log('data', data);
+      
+      setTimeout(()=>{
+        dispatch(actions.sortInvoiceSuccess(data))
+      }, 1000);
       
     });
   };

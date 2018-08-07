@@ -41,9 +41,20 @@ html, body {
   height: 10px;
   width: 10px;
   padding: 0px !important;
-  background: red;
   border-radius: 50%;
   display: inline-block;
+  &.Pending{
+    background: yellow;
+  }
+  &.New{
+    background: blue;
+  }
+  &.Approved{
+    background: green;
+  }
+  &.Canceled{
+    background: red;
+  }
 }
 .text-right{
   text-align: right;

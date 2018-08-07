@@ -10,6 +10,8 @@ import Loadable from 'react-loadable';
 import store from './redux/store';
 import {accounts, dashboard, invoice, settings,reports, userData, accountsDetalsData} from './constants';
 
+
+
 const Loading = () => <div>Loading...</div>;
 
 const Dashboard = Loadable({
@@ -54,7 +56,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={(props)=><Dashboard {...props} data={dashboard} />} />
             <Route exact path="/dashboard" render={(props)=><Dashboard {...props} data={dashboard} />} />
-            <Route exact path="/invoice" render={(props)=><Invoice {...props} data={invoice} />} />
+            <Route exact path="/invoice" render={(props)=><Invoice {...props}/>} />
             <Route exact path="/accounts" render={(props)=><Accounts {...props}/>} />
             <Route exact path="/accountsdetails" render={(props)=><AccountsDetails {...props} data={accountsDetalsData} />} />
             <Route exact path="/reports" render={(props)=><Reports {...props} data={reports} />} />
