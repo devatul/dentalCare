@@ -10,6 +10,7 @@ export const getAccountsSuccess = createAction(constants.GET_ACCOUNTS_SUCCESS);
 export const getAccountsError = createAction(constants.GET_ACCOUNTS_ERROR);
 export const loadMoreAccountsDataSuccess = createAction(constants.LOAD_MORE_ACCOUNTS_SUCCESS);
 export const sortAccountsSuccess = createAction(constants.SORT_ACCOUNT_SUCCESS);
+export const getAccountDetailsRequest= createAction(constants.GET_ACCOUNT_DETAILS_SUCCESS);
 
 export const getInvoiceRequest = createAction(constants.GET_INVOICE_REQUEST);
 export const getInvoiceSuccess = createAction(constants.GET_INVOICE_SUCCESS);

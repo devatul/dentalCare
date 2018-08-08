@@ -65,11 +65,12 @@ const loadMoreInvoiceDataSuccess = (state, action) => {
 }
 
 const sortInvoiceSuccess = (state, action) => {
-  let data = cloneDeep(state.invoice.data);
-  data.rows = action.payload;  
+  // let data = cloneDeep(state.invoice.data);
+  // data.rows = action.payload;  
   return update(state, {
     invoice: {
-      data:      {$set: data},
+      // data:      {$set: data},
+      data:      {$set: action.payload},
       isLoading: {$set: false},
       isError:   {$set: false},
       isSuccess: {$set: true},

@@ -18,7 +18,11 @@ export const accounts = {
             name:'ABC-1',
             image:'',
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
-            status: 'Approved'
+            status: 'Approved',
+            family:[
+                {firstName:'abc', lastName:'xyz'},
+                {firstName:'abc', lastName:'xyz'},
+            ]
         },
         {
             id:2,
@@ -104,7 +108,11 @@ export const invoice = {
             image:'',
             dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
-            status: 'Approved'
+            status: 'Approved',
+            family:[
+                {firstName:'abc', lastName:'xyz'},
+                {firstName:'abc', lastName:'xyz'},
+            ]
         },
         {
             id:2,

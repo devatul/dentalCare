@@ -2,50 +2,57 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import SearchInput, {createFilter} from 'react-search-input';
 import $ from "jquery";
+import {isEqual} from 'lodash';
+import {isScrolledIntoView} from '../helper';
 
-$.fn.visible = function(partial) {            
-    var $t            = $(this),
-        $w            = $(window),
-        viewTop       = $w.scrollTop(),
-        viewBottom    = viewTop + $w.height(),
-        _top          = $t.offset().top,
-        _bottom       = _top + $t.height(),
-        compareTop    = partial === true ? _bottom : _top,
-        compareBottom = partial === true ? _top : _bottom;
-  
-    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
-  };
-
-const headers = ['Name', 'Date', 'Status'];
 class AccountsPage extends Component {
     state = {
         searchTerm: '',
         tableStatus:{orderon:'', orderby:'',page:1,  range:10},
         selected: [],
+        accountsData: this.props.accountsData || {},
+    }
+    visited = [];
+    componentWillReceiveProps(props){
+        if(!isEqual(props.accountsData, this.state.accountsData)){
+            let i=0;
+            let tm = setInterval(()=>{
+                i++
+                this.animateRow();
+                if(i > 20){
+                    clearInterval(tm)
+                }
+            },50);
+        }
     }
     componentDidMount(){
         $(document).scroll(()=>{
             this.handleOnScroll();
+            this.animateRow();
         })
     }
-    handleOnScroll = () => {
-        let cards = $('.card');
-        cards.each(function(i, el) {
-            var el = $(el);
-            if (el.visible(true)) {
-                el.addClass("come-in"); 
-            } else {
-                el.removeClass("come-in");
-            }
-        }) 
-        if ((window.innerHeight + window.scrollY) === document.body.scrollHeight) {
+    handleOnScroll = () => { 
+        if ((window.innerHeight + window.scrollY) === document.body.scrollHeight && this.props.accountsData.data.rows) {
             let {tableStatus} = this.state;
             if(tableStatus.page * tableStatus.range  === this.props.accountsData.data.rows.length){
-                this.props.loadMoreAccountsData(tableStatus);
                 tableStatus.page +=1;
+                this.props.loadMoreAccountsData(tableStatus);
                 this.setState({tableStatus});
             }
         }
+    }
+    animateRow = ()=>{
+        let visited = this.visited;
+        let cards = $('.card');        
+        cards.each(function(i, el) {
+            var el = $(el);
+            let id = el.attr('id');
+            if (!visited.includes(id) && isScrolledIntoView(el)) {
+                el.addClass("come-in"); 
+                visited.push(id);
+            }
+        })
+        this.visited =  visited;
     }
     searchUpdated = (term) => {
         this.setState({searchTerm: term})
@@ -71,29 +78,46 @@ class AccountsPage extends Component {
         if(data.rows && data.rows.length){
             data.rows.map((row, i)=>{
                 let checked = selected.includes(row.id);
+                let family = [];
+                row.family && row.family.map((m,j)=>{
+                    family.push(<div key={j+1} className="member">
+                    <div className="cell">
+                        <div className="f-100"><strong>Fist Name : </strong>{m.firstName}</div>
+                        <div className="f-100"><strong>Last Name : </strong>{m.lastName}</div>
+                    </div>
+                </div>)
+                })
                 rows.push(
-                    <div key={i+1} className={`card come-in ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
-                        <div className="cell f-10">
-                            <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
-                                <input type="checkbox" checked={checked}/>
-                            </span>
+                    <div key={i+1} id={`row_${row.id}`} className={`card ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
+                        <div className="parant">
+                            <div className="cell f-2-rem w-2-rem">
+                                <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
+                                    <input type="checkbox" checked={checked}/>
+                                </span>
+                            </div>
+                            <div className="cell">
+                                <span><i className="fas fa-user-circle"></i></span>
+                                <span>{row.name}</span>
+                            </div>
+                            <div className="cell">
+                                <div className="f-100"><strong>Date : </strong>{row.date.d}</div>
+                                <div className="f-100"><strong>Time : </strong>{row.date.t}</div>
+                            </div>
+                            <div className="cell j-c-s-b">
+                                <span>
+                                    <span className={`dot ${row.status}`}></span>
+                                    <span>{row.status}</span> 
+                                </span>
+                                <span className="detail-page-link" onClick={()=>this.props.pageDetails(row)}>
+                                    <i className="fas fa-angle-right"></i>
+                                </span>
+                            </div>
                         </div>
-                        <div className="cell">
-                            <span><i className="fas fa-user-circle"></i></span>
-                            <span>{row.name}</span>
-                        </div>
-                        <div className="cell">
-                            <div className="f-100"><strong>Date : </strong>{row.date.d}</div>
-                            <div className="f-100"><strong>Time : </strong>{row.date.t}</div>
-                        </div>
-                        <div className="cell j-c-s-b">
-                            <span>
-                                <span className={`dot ${row.status}`}></span>
-                                <span>{row.status}</span> 
-                            </span>
-                            <span className="detail-page-link" onClick={()=>this.props.pageDetails(row)}>
-                                <i className="fas fa-angle-right"></i>
-                            </span>
+                        <div className="family">
+                            <div className="cell f-2-rem w-2-rem"></div>
+                            <div className="members">
+                                {family}
+                            </div>
                         </div>
                     </div>
                 )
@@ -111,20 +135,15 @@ class AccountsPage extends Component {
     }
     sortTable = (column) => {
         let {tableStatus} = this.state;
-        let params = {orderon:column};
         if(tableStatus.orderon === column && tableStatus.orderby === 'desc' ){
             tableStatus.orderby = 'asc';
-            params.orderby = 'asc';
         }else if(tableStatus.orderon === column && tableStatus.orderby === 'asc' ){
             tableStatus.orderby = 'desc';
-            params.orderby = 'desc';
         }else{
             tableStatus.orderon = column;
             tableStatus.orderby = 'asc';
-            params.orderby = 'asc';
         }
-        params.data = this.props.accountsData.data.rows || []; // will remove this when integrate API
-        this.props.sortAccountsData(params);
+        this.props.sortAccountsData(tableStatus);
         this.setState({tableStatus});
     }
   render() {
@@ -143,7 +162,7 @@ class AccountsPage extends Component {
             </div>
             <div className="table-wrapper">
                 <div className="content-header">
-                    <div className={`cell f-10 checkbox-header`}></div>
+                    <div className={`cell f-2-rem w-2-rem checkbox-header`}></div>
                     <div className='cell' onClick={()=>this.sortTable('name')}>
                         <span>Name</span>
                         <span><i className={`fas fa-angle-${sortClass('name')}`}></i></span>

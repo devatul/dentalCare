@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import $ from "jquery";
 import {getUserData} from '../redux/home/actions';
-import {getAccountsData, loadMoreAccountsData, sortAccountsData} from '../redux/accounts/actions';
+import {getAccountsData, loadMoreAccountsData, sortAccountsData, getAccountDetails} from '../redux/accounts/actions';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import AccountsPage from '../components/AccountsPage';
@@ -14,7 +14,7 @@ class Accounts extends Component {
   state = {
     userDate:{},
     collapsed: false,
-    accountDetails:false
+    accountDetails:{}
   }
   componentWillMount(){
     this.props.getUserData();
@@ -25,15 +25,19 @@ class Accounts extends Component {
     $("#account-detail-page").toggle("slide", {direction: "right"}, 500);  
   }
   pageDetails = (accountDetails)=>{
-    this.setState({accountDetails});
+    // this.setState({accountDetails});
+    this.props.getAccountDetails({id:accountDetails.id});
     this.handleSlide();
   }
   goToAccountPage = ()=>{
-    this.setState({accountDetails:false});
+    // this.setState({accountDetails:{}});
     this.handleSlide();
   }
   render() {
-    let {collapsed, accountDetails} = this.state;
+    let {collapsed} = this.state;
+    let {accountDetails} = this.props;
+    console.log('accountDetails', accountDetails);
+    
     return (
       <div  id="app" className={`app app-home ${collapsed ? 'collapsed' : ''}`}>
         <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
@@ -44,7 +48,7 @@ class Accounts extends Component {
                 <AccountsPage {...this.props} pageDetails={this.pageDetails}/>
               </div>
               <div id="account-detail-page" className="page nodisplay">
-                {accountDetails && <AccountDetailsPage  data={accountDetails} onToggleSlide={this.goToAccountPage}/>}
+                <AccountDetailsPage  data={accountDetails.data} onToggleSlide={this.goToAccountPage}/>
               </div>
           </div>
         </div>
@@ -56,7 +60,8 @@ class Accounts extends Component {
 const mapStateToProps = state => {
   return {
     user:state.home.user,
-    accountsData: state.accounts.accounts
+    accountsData: state.accounts.accounts,
+    accountDetails: state.accounts.accountDetails
   };
 };
 
@@ -73,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     sortAccountsData:(params)=>{
       return dispatch(sortAccountsData(params));
+    },
+    getAccountDetails: (params)=>{
+      return dispatch(getAccountDetails(params))
     },
   }
 };

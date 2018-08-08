@@ -1,9 +1,10 @@
 
 
 const fetchAPI = (url='', method='GET',body={}) =>{
+    console.log('aaaaaaaa',url);
+    
     return fetch(url, {
         method: method,
-        body: JSON.stringify(body)
     })
     .then(function(response) {
         return response.json()

@@ -7,18 +7,19 @@ import {invoice} from '../../constants';
 
 export const getInvoiceData = (params) => {
   return (dispatch, getState) => {
+    dispatch(actions.getInvoiceRequest());
     return new Promise((resolve, reject) => {
-      // fetchAPI(api.invoice)
-      // .then((res)=>{
-      //   console.log('response', res);
-      // })
-      // .catch((err)=>{
-      //   console.log('Error', err);
-      // })
-      dispatch(actions.getInvoiceRequest());
-      setTimeout(()=>{
-        dispatch(actions.getInvoiceSuccess(invoice))
-      }, 2000);
+      fetchAPI(api.getInvoice)
+      .then((res)=>{
+        console.log('response', res);
+        dispatch(actions.getInvoiceSuccess(res));
+      })
+      .catch((err)=>{
+        console.log('Error', err);
+      })
+      // setTimeout(()=>{
+      //   dispatch(actions.getInvoiceSuccess(invoice))
+      // }, 2000);
       
     });
   };
@@ -26,18 +27,19 @@ export const getInvoiceData = (params) => {
 
 export const loadMoreInvoiceData = (params) => {
   return (dispatch, getState) => {
+    dispatch(actions.getInvoiceRequest());
     return new Promise((resolve, reject) => {
-      // fetchAPI(api.loadMoreInvoice)
-      // .then((res)=>{
-      //   console.log('response', res);
-      // })
-      // .catch((err)=>{
-      //   console.log('Error', err);
-      // })
-      dispatch(actions.getInvoiceRequest());
-      setTimeout(()=>{
-        dispatch(actions.loadMoreInvoiceDataSuccess(invoice))
-      },1000);
+      fetchAPI(api.loadMoreInvoice(params.page,params.range))
+      .then((res)=>{
+        console.log('response', res);
+        dispatch(actions.loadMoreInvoiceDataSuccess(res))
+      })
+      .catch((err)=>{
+        console.log('Error', err);
+      })
+      // setTimeout(()=>{
+      //   dispatch(actions.loadMoreInvoiceDataSuccess(invoice))
+      // },1000);
       
     });
   };
@@ -46,22 +48,22 @@ export const loadMoreInvoiceData = (params) => {
 export const sortInvoiceData = (params) => {
   return (dispatch, getState) => {
     console.log('params', params);
-    
+    dispatch(actions.getInvoiceRequest());
     return new Promise((resolve, reject) => {
-      // fetchAPI(api.sortInvoice)
-      // .then((res)=>{
-      //   console.log('response', res);
-      // })
-      // .catch((err)=>{
-      //   console.log('Error', err);
-      // })
-      // dispatch(actions.getAccountsRequest());
-      let data = orderBy(params.data, [params.orderon], [params.orderby]);
-      console.log('data', data);
+      fetchAPI(api.sortInvoice(params.page,params.range, params.orderon,params.orderby))
+      .then((res)=>{
+        console.log('response', res);
+        dispatch(actions.sortInvoiceSuccess(res))
+      })
+      .catch((err)=>{
+        console.log('Error', err);
+      })
+      // let data = orderBy(params.data, [params.orderon], [params.orderby]);
+      // console.log('data', data);
       
-      setTimeout(()=>{
-        dispatch(actions.sortInvoiceSuccess(data))
-      }, 1000);
+      // setTimeout(()=>{
+      //   dispatch(actions.sortInvoiceSuccess(data))
+      // }, 1000);
       
     });
   };

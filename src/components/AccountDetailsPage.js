@@ -4,11 +4,16 @@ import { Button } from 'react-bootstrap';
 
 class AccountDetailsPage extends Component {
   render() {
+      let {data} = this.props;
+      console.log('data',data);
+    //   let {lastChanged, notice} = data.passwordInfo && data.passwordInfo;
+    //   let {address, email, licenceNo, position, university} = data.personalInfo;
+    //   let {creditCard, paypal} = data.payInfo;
     return (
       <div className="page-body-wrapper">
         <div className="account-details">
             <div className="page-title">
-                <h1><span className="link" onClick={this.props.onToggleSlide}>Accounts</span> > {this.props.data.name}</h1>
+                <h1><span className="link" onClick={this.props.onToggleSlide}>Accounts</span> > {data.name}</h1>
             </div>
             <div className="banner">
                 <div className="top-bg">
