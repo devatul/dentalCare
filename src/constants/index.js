@@ -41,6 +41,48 @@ export const accounts = {
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
         },
+        {
+            id:5,
+            name:'ABC-5',
+            image:'',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            id:6,
+            name:'ABC-6',
+            image:'',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'New'
+        },
+        {
+            id:7,
+            name:'ABC-7',
+            image:'',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Pending'
+        },
+        {
+            id:8,
+            name:'ABC-8',
+            image:'',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            id:9,
+            name:'ABC-9',
+            image:'',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            id:10,
+            name:'ABC-10',
+            image:'',
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'New'
+        },
     ]
 }
 export const accountsDetalsData = {
@@ -90,6 +132,60 @@ export const invoice = {
             dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
             date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
             status: 'Approved'
+        },
+        {
+            id:5,
+            invoiceNo:'',
+            name:'ABC-5',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            id:6,
+            invoiceNo:'',
+            name:'ABC-6',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'New'
+        },
+        {
+            id:7,
+            invoiceNo:'',
+            name:'ABC-7',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            id:8,
+            invoiceNo:'',
+            name:'ABC-8',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'Approved'
+        },
+        {
+            id:9,
+            invoiceNo:'',
+            name:'ABC-9',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'New'
+        },
+        {
+            id:10,
+            invoiceNo:'',
+            name:'ABC-10',
+            image:'',
+            dueDate:{d:'9 Jul 2018',t:'3:00PM - 9:00AM'},
+            date:{d:'9 Mar 2018',t:'3:00PM - 9:00AM'},
+            status: 'New'
         },
     ]
 }

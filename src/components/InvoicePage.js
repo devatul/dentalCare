@@ -49,9 +49,11 @@ class InvoicePage extends Component {
         })    
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight && this.props.invoiceData.data.rows) {
             let {tableStatus} = this.state;
-            this.props.loadMoreInvoiceData(tableStatus);
-            tableStatus.page +=1;
-            this.setState({tableStatus});
+            if(tableStatus.page * tableStatus.range  === this.props.invoiceData.data.rows.length){
+                this.props.loadMoreInvoiceData(tableStatus);
+                tableStatus.page +=1;
+                this.setState({tableStatus});
+            }
         }
     }
     searchUpdated = (term) => {

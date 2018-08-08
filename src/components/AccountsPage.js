@@ -40,9 +40,11 @@ class AccountsPage extends Component {
         }) 
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight) {
             let {tableStatus} = this.state;
-            this.props.loadMoreAccountsData(tableStatus);
-            tableStatus.page +=1;
-            this.setState({tableStatus});
+            if(tableStatus.page * tableStatus.range  === this.props.accountsData.data.rows.length){
+                this.props.loadMoreAccountsData(tableStatus);
+                tableStatus.page +=1;
+                this.setState({tableStatus});
+            }
         }
     }
     searchUpdated = (term) => {
