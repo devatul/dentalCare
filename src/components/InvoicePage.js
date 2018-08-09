@@ -188,7 +188,7 @@ class InvoicePage extends Component {
             </div>
             <div className="inoive-buttons">
                 <ButtonGroup>
-                    <Button>Send Remainder</Button>
+                    <Button>Send Reminder</Button>
                     <Button>Cancel Invoice</Button>
                 </ButtonGroup>
             </div>
