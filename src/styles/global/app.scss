@@ -99,3 +99,10 @@ h1{
     margin: 10px 0;
   }
 }
+
+@media only screen and (max-width: 450px){
+  .dot{
+    height: 7px;
+    width: 7px;
+  }
+}

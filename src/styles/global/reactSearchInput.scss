@@ -17,7 +17,7 @@
     font-size: 42px;
     top: 18px;
     /* left: 16px; */
-    right: 11px;
+    right: 0px;
     line-height: 22px;
     opacity: 0.6;
   }
@@ -27,10 +27,11 @@
     font-size: 18px;
     border: none;
     line-height: 22px;
-    padding: 10px 10px 10px 25px;
+    padding: 10px 30px 10px 10px;
     height: 50px;
     position: relative;
     border-radius: 5px;
+    border: 1px solid gainsboro;
   }
   
   .search-input > input:focus {

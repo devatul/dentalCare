@@ -108,19 +108,19 @@ class InvoicePage extends Component {
                             <div className="cell">
                                 <span>{row.name}</span>
                             </div>
-                            <div className="cell">
-                                <div className="f-100"><strong>Date : </strong>{row.issuedate.d}</div>
-                                <div className="f-100"><strong>Time : </strong>{row.issuedate.t}</div>
+                            <div className="cell col-date">
+                                <div className="block"><strong>Date : </strong>{row.issuedate.d}</div>
+                                <div className="block"><strong>Time : </strong>{row.issuedate.t}</div>
                             </div>
                             <div className="cell">
                                 <span className="dot"></span>
                                 <span>{row.status}</span> 
                             </div>
-                            <div className="cell">
-                                <div className="f-100"><strong>Date : </strong>{row.dueon.d}</div>
-                                <div className="f-100"><strong>Time : </strong>{row.dueon.t}</div>
+                            <div className="cell col-date">
+                                <div className="block"><strong>Date : </strong>{row.dueon.d}</div>
+                                <div className="block"><strong>Time : </strong>{row.dueon.t}</div>
                             </div>
-                            <div className="cell f-30" >
+                            <div className="cell f-30 hide" >
                                 <div className="f-100">{row.link}</div>
                             </div>
                         </div>
@@ -216,7 +216,7 @@ class InvoicePage extends Component {
                         <span>Due On</span>
                         <span><i className={`fas fa-angle-${sortClass('dueon.d')}`}></i></span>
                     </div>
-                    <div className={`cell f-30 text-right`}>
+                    <div className={`cell f-30 text-right hide`}>
                         <span></span>
                         <span><i className="fas fa-angle-down"></i></span>
                     </div>

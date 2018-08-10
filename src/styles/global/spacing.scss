@@ -41,6 +41,9 @@
     display: flex;
     flex-basis: 100% !important;                    
   }
+  .f-1-rem{
+    flex-basis: 1rem !important;                    
+  }
   .f-2-rem{
     flex-basis: 2rem !important;                    
   }
@@ -50,6 +53,9 @@
     flex-basis: 100% !important;                    
   }
 
+  .w-1-rem{
+    min-width: 1rem;
+  }
   .w-2-rem{
     min-width: 2rem;
   }

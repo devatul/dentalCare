@@ -93,7 +93,7 @@ class AccountsPage extends Component {
                 rows.push(
                     <div key={i+1} id={`row_${row.id}`} className={`card ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
                         <div className="parant">
-                            <div className="cell f-2-rem w-2-rem">
+                            <div className="cell col-checkbox">
                                 <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
                                     <input type="checkbox" checked={checked}/>
                                 </span>
@@ -102,10 +102,19 @@ class AccountsPage extends Component {
                                 <span><i className="fas fa-user-circle"></i></span>
                                 <span>{row.name}</span>
                             </div>
-                            <div className="cell">
-                                <div className="f-100"><strong>Date : </strong>{row.date}</div>
-                                <div className="f-100"><strong>Time : </strong>{row.time}</div>
-                            </div>
+                            <div className="cell col-date">
+                                <div className="block"><strong>Date : </strong>{row.date}</div>
+                                <div className="block"><strong>Time : </strong>{row.time}</div>
+                                </div>
+                                {/* <div className="block">
+                                    <span><strong>Date : </strong></span>
+                                    <span>{row.date}</span>
+                                </div>
+                                <div className="block">
+                                    <span><strong>Time : </strong></span>
+                                    <span className="m-w-max-content">{row.time}</span>
+                                </div>
+                            </div> */}
                             <div className="cell j-c-s-b">
                                 <span>
                                     <span className={`dot ${row.status}`}></span>
@@ -117,7 +126,7 @@ class AccountsPage extends Component {
                             </div>
                         </div>
                         <div className="family">
-                            <div className="cell f-2-rem w-2-rem"></div>
+                            <div className="cell f-1-rem w-1-rem"></div>
                             <div className="members">
                                 {family}
                             </div>
@@ -163,7 +172,7 @@ class AccountsPage extends Component {
             </div>
             <div className="table-wrapper">
                 <div className="content-header">
-                    <div className={`cell f-2-rem w-2-rem checkbox-header`}></div>
+                    <div className={`cell col-checkbox-header`}></div>
                     <div className='cell' onClick={()=>this.sortTable('name')}>
                         <span>Name</span>
                         <span><i className={`fas fa-angle-${sortClass('name')}`}></i></span>
