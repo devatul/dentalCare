@@ -1,12 +1,15 @@
 import {handleActions} from 'redux-actions';
 import update from 'immutability-helper';
-import {findIndex, cloneDeep, find, extend, remove} from 'lodash';
+// import {findIndex, cloneDeep, find, extend, remove} from 'lodash';
 import * as constants from '../../redux/constants';
 
 
 const initialState = {
     accounts: {
-      data:      {},
+      data:      {
+        rows:[],
+        tableStatus:{page:1,  range:10, orderon:'', orderby:'', searchTerm:''},
+      },
       isLoading: false,
       isError:   false,
       isSuccess: false,
@@ -51,40 +54,40 @@ const getAccountsError = (state, action) => update(state, {
 });
 
 
-const loadMoreAccountsDataSuccess = (state, action) => {
-  let data = cloneDeep(state.accounts.data);
-  let rows = cloneDeep(action.payload.rows);
-  // let ln = data.rows.length;
-  // rows.map((r, i)=>{
-  //   r.id = ln + i + 1;
-  //   r.name = 'ABC-'+ r.id;
-  // })
-  data.rows = [...data.rows, ...rows];  
-  return update(state, {
-    accounts: {
-      data:      {$set: data},
-      isLoading: {$set: false},
-      isError:   {$set: false},
-      isSuccess: {$set: true},
-      message:   {$set: ''}
-    }
-  });
-}
+// const loadMoreAccountsDataSuccess = (state, action) => {
+//   let data = cloneDeep(state.accounts.data);
+//   let rows = cloneDeep(action.payload.rows);
+//   // let ln = data.rows.length;
+//   // rows.map((r, i)=>{
+//   //   r.id = ln + i + 1;
+//   //   r.name = 'ABC-'+ r.id;
+//   // })
+//   data.rows = [...data.rows, ...rows];  
+//   return update(state, {
+//     accounts: {
+//       data:      {$set: data},
+//       isLoading: {$set: false},
+//       isError:   {$set: false},
+//       isSuccess: {$set: true},
+//       message:   {$set: ''}
+//     }
+//   });
+// }
 
-const sortAccountsSuccess = (state, action) => {
-  // let data = cloneDeep(state.accounts.data);
-  // data.rows = action.payload;  
-  return update(state, {
-    accounts: {
-      // data:      {$set: data},
-      data:      {$set: action.payload},
-      isLoading: {$set: false},
-      isError:   {$set: false},
-      isSuccess: {$set: true},
-      message:   {$set: ''}
-    }
-  });
-}
+// const sortAccountsSuccess = (state, action) => {
+//   // let data = cloneDeep(state.accounts.data);
+//   // data.rows = action.payload;  
+//   return update(state, {
+//     accounts: {
+//       // data:      {$set: data},
+//       data:      {$set: action.payload},
+//       isLoading: {$set: false},
+//       isError:   {$set: false},
+//       isSuccess: {$set: true},
+//       message:   {$set: ''}
+//     }
+//   });
+// }
 const getAccountDetailsSuccess = (state, action) => update(state, {
   accountDetails: {
     data:      {$set: action.payload},
@@ -99,8 +102,8 @@ const getAccountDetailsSuccess = (state, action) => update(state, {
     [constants.GET_ACCOUNTS_REQUEST]: getAccountsRequest,
     [constants.GET_ACCOUNTS_SUCCESS]: getAccountsSuccess,
     [constants.GET_ACCOUNTS_ERROR]:   getAccountsError,
-    [constants.LOAD_MORE_ACCOUNTS_SUCCESS]: loadMoreAccountsDataSuccess,
-    [constants.SORT_ACCOUNT_SUCCESS]: sortAccountsSuccess,
+    // [constants.LOAD_MORE_ACCOUNTS_SUCCESS]: loadMoreAccountsDataSuccess,
+    // [constants.SORT_ACCOUNT_SUCCESS]: sortAccountsSuccess,
     [constants.GET_ACCOUNT_DETAILS_SUCCESS]: getAccountDetailsSuccess,
   }, initialState);
   

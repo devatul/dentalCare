@@ -1,3 +1,4 @@
+// import {filter, includes, orderBy, slice} from 'lodash';
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
@@ -6,70 +7,46 @@ let invoice_data = require('../const/invoices.js');
 
 
 router.get('/accounts', function (req, res) {
-  console.log(req.query);
-  let page = req.query.page;
-  let range = req.query.range;
-  let orderby = req.query.orderby;
-  let orderon = req.query.orderon || 'name';
-  let startPoint = ((page - 1) * range) + 1;
-  var data = account_data.rows;
-
-  const getPage = (d, sp) => {
-    console.log('****************',sp);
-    
-    d.map((r, i) => {
-      r.id = sp + i;
-      r.name = 'ABC-' + r.id;
+  console.log('Accounts',req.query);
+  let {page, range, orderby, orderon, search} = req.query
+  page = parseInt(page);
+  range = parseInt(range);
+  let start =   0,//((page - 1) * range),
+      end   =   page * range,//start + range,
+      rows  =   account_data.rows;
+  if(search){
+    rows = _.filter(rows, function(row) { 
+      return _.includes((row.name).toLowerCase(), search.toLowerCase()) 
+            || _.includes((row.status).toLowerCase(), search.toLowerCase());
     });
-    return d;
   }
-  if (orderby) {
-    startPoint = 1;
-    let data_array = [];
-    for (var j = 0; j < page; j++) {
-      startPoint = j * parseInt(range) + 1;
-      let d = getPage(data, startPoint);
-      data_array = [...data_array, ...d];
-    }
-    data_array = _.orderBy(data_array, [orderon], [orderby]);
-    res.send({rows:data_array});
-  } else {
-    let d = getPage(data, startPoint);
-    res.send({rows:d});
+  if(orderon && orderby){
+    rows = _.orderBy(rows, [orderon], [orderby]);
   }
+  rows = _.slice(rows,[start],[end]);
+  res.send({rows});
 });
-  router.get('/invoices', function (req, res) {
-    let page = req.query.page;
-    let range = req.query.range;
-    let orderby = req.query.orderby;
-    let startPoint = ((page - 1) * range) + 1;
-    let orderon = req.query.orderon || 'name';
-    let data = invoice_data.rows;
 
-    const getPage = (d, sp) => {
-      d.map((r, i) => {
-        r.id = sp + i;
-        r.name = 'ABC-' + r.id;
-      });
-      return d;
-    }
-    if (orderby) {
-      startPoint = 1;
-    let data_array = [];
-    for (var j = 0; j < page; j++) {
-      startPoint = j * parseInt(range) + 1;
-      
-      let d = getPage(data, startPoint);
-      data_array = [...data_array, ...d];
-    }
-    
-    data_array = _.orderBy(data_array, [orderon], [orderby]);
-    res.send({rows:data_array});
-    } else {
-      let d = getPage(data, startPoint);
-      res.send({rows:d});
-    }
-  });
+router.get('/invoices', function (req, res) {
+  console.log('Invoices',req.query);
+  let {page, range, orderby, orderon, search} = req.query
+  page = parseInt(page);
+  range = parseInt(range);
+  let start =   0,//((page - 1) * range),
+      end   =   page * range,//start + range,
+      rows  =   invoice_data.rows;
+  if(search){
+    rows = _.filter(rows, function(row) { 
+      return _.includes((row.name).toLowerCase(), search.toLowerCase()) 
+            || _.includes((row.status).toLowerCase(), search.toLowerCase());
+    });
+  }
+  if(orderon && orderby){
+    rows = _.orderBy(rows, [orderon], [orderby]);
+  }
+  rows = _.slice(rows,[start],[end]);
+  res.send({rows});
+});
 
 
 

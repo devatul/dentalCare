@@ -42,17 +42,15 @@ const User = Loadable({
   loader: () => import('./containers/User'),
   loading: Loading,
 });
-
-class App extends Component {
+class App1 extends Component {
   constructor(){
     super();
-  }
+  } 
 
   render() {
-
+    console.log('2222222222222222');
+    
     return (
-      <Provider store={store} key="provider">
-        <Router>
           <Switch>
             <Route exact path="/" render={(props)=><Dashboard {...props} data={dashboard} />} />
             <Route exact path="/dashboard" render={(props)=><Dashboard {...props} data={dashboard} />} />
@@ -63,10 +61,51 @@ class App extends Component {
             <Route exact path="/settings" render={(props)=><Settings {...props} data={settings} />} />
             <Route exact path="/user" render={(props)=><User {...props} data={userData} />} />
           </Switch>
+    );
+  }
+}
+class App extends Component {
+  constructor(){
+    super();
+  } 
+
+  render() {
+
+    return (
+      <Provider store={store} key="provider">
+        <Router>
+          <Switch>
+            <Route path="/" render={(props)=><App1 {...props} />} />
+          </Switch>
         </Router>
       </Provider>
     );
   }
 }
+// class App extends Component {
+//   constructor(){
+//     super();
+//   } 
+
+//   render() {
+
+//     return (
+//       <Provider store={store} key="provider">
+//         <Router>
+//           <Switch>
+//             <Route exact path="/" render={(props)=><Dashboard {...props} data={dashboard} />} />
+//             <Route exact path="/dashboard" render={(props)=><Dashboard {...props} data={dashboard} />} />
+//             <Route exact path="/invoice" render={(props)=><Invoice {...props}/>} />
+//             <Route exact path="/accounts" render={(props)=><Accounts {...props}/>} />
+//             <Route exact path="/accountsdetails" render={(props)=><AccountsDetails {...props} data={accountsDetalsData} />} />
+//             <Route exact path="/reports" render={(props)=><Reports {...props} data={reports} />} />
+//             <Route exact path="/settings" render={(props)=><Settings {...props} data={settings} />} />
+//             <Route exact path="/user" render={(props)=><User {...props} data={userData} />} />
+//           </Switch>
+//         </Router>
+//       </Provider>
+//     );
+//   }
+// }
 
 export default App;

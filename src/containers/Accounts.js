@@ -18,7 +18,7 @@ class Accounts extends Component {
   }
   componentWillMount(){
     this.props.getUserData();
-    this.props.getAccountsData();
+    // this.props.getAccountsData();
   }
   handleSlide = ()=>{
     $("#account-detail").toggle("slide", {direction: "left"}, 500);
@@ -73,12 +73,12 @@ const mapDispatchToProps = (dispatch) => {
     getAccountsData: (params)=> {
       return dispatch(getAccountsData(params))
     },
-    loadMoreAccountsData: (params)=>{
-      return dispatch(loadMoreAccountsData(params));
-    },
-    sortAccountsData:(params)=>{
-      return dispatch(sortAccountsData(params));
-    },
+    // loadMoreAccountsData: (params)=>{
+    //   return dispatch(loadMoreAccountsData(params));
+    // },
+    // sortAccountsData:(params)=>{
+    //   return dispatch(sortAccountsData(params));
+    // },
     getAccountDetails: (params)=>{
       return dispatch(getAccountDetails(params))
     },

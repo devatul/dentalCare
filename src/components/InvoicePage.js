@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import SearchInput, {createFilter} from 'react-search-input';
 import $ from "jquery";
-import {isEqual} from 'lodash';
+import {isEqual, cloneDeep} from 'lodash';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import {isScrolledIntoView} from '../helper';
 
 class InvoicePage extends Component {
     state = {
-        searchTerm: '',
-        tableStatus:{orderon:'', orderby:'',page:1,  range:10},
         selected: [],
         invoiceData:this.props.invoiceData || {},
     }
     visited = [];
+    componentWillMount(){
+        let {tableStatus} = this.props.invoiceData.data;
+        this.props.getInvoiceData(tableStatus);
+    }
     componentWillReceiveProps(props){
         if(!isEqual(props.invoiceData, this.state.invoiceData)){
             this.setState({
@@ -51,16 +53,17 @@ class InvoicePage extends Component {
     }
     handleOnScroll = () => { 
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight && this.props.invoiceData.data.rows) {
-            let {tableStatus} = this.state;
+            let tableStatus = cloneDeep(this.props.invoiceData.data.tableStatus);
             if(tableStatus.page * tableStatus.range  === this.props.invoiceData.data.rows.length){
                 tableStatus.page +=1;
-                this.props.loadMoreInvoiceData(tableStatus);
-                this.setState({tableStatus});
+                this.props.getInvoiceData(tableStatus);
             }
         }
     }
     searchUpdated = (term) => {
-        this.setState({searchTerm: term})
+        let tableStatus = cloneDeep(this.props.invoiceData.data.tableStatus);
+        tableStatus.searchTerm = term;
+        this.props.getInvoiceData(tableStatus);
     }
     handleChecked = (id)=>{
         let {selected} = this.state;
@@ -78,13 +81,13 @@ class InvoicePage extends Component {
         let {invoiceData}= this.props;
         let {isLoading, data} = invoiceData;
         let rows = [];
-        let {selected} = this.state;
+        let {selected} = this.state;        
         if(data.rows && data.rows.length){
             data.rows.map((row, i)=>{
                 let checked = selected.includes(row.id);
                 let family = [];
                 row.family && row.family.map((m,j)=>{
-                    family.push(<div className="member">
+                    family.push(<div key={j+1} className="member">
                     <div className="cell">
                         <div className="f-100"><strong>Fist Name : </strong>{m.firstName}</div>
                         <div className="f-100"><strong>Last Name : </strong>{m.lastName}</div>
@@ -106,16 +109,16 @@ class InvoicePage extends Component {
                                 <span>{row.name}</span>
                             </div>
                             <div className="cell">
-                                <div className="f-100"><strong>Date : </strong>{row.date.d}</div>
-                                <div className="f-100"><strong>Time : </strong>{row.date.t}</div>
+                                <div className="f-100"><strong>Date : </strong>{row.issuedate.d}</div>
+                                <div className="f-100"><strong>Time : </strong>{row.issuedate.t}</div>
                             </div>
                             <div className="cell">
                                 <span className="dot"></span>
                                 <span>{row.status}</span> 
                             </div>
                             <div className="cell">
-                                <div className="f-100"><strong>Date : </strong>{row.dueDate.d}</div>
-                                <div className="f-100"><strong>Time : </strong>{row.dueDate.t}</div>
+                                <div className="f-100"><strong>Date : </strong>{row.dueon.d}</div>
+                                <div className="f-100"><strong>Time : </strong>{row.dueon.t}</div>
                             </div>
                             <div className="cell f-30" >
                                 <div className="f-100">{row.link}</div>
@@ -142,7 +145,7 @@ class InvoicePage extends Component {
         return rows;
     }
     sortTable = (column) => {
-        let {tableStatus} = this.state;
+        let tableStatus = cloneDeep(this.props.invoiceData.data.tableStatus);
         if(tableStatus.orderon === column && tableStatus.orderby === 'desc' ){
             tableStatus.orderby = 'asc';
         }else if(tableStatus.orderon === column && tableStatus.orderby === 'asc' ){
@@ -151,12 +154,11 @@ class InvoicePage extends Component {
             tableStatus.orderon = column;
             tableStatus.orderby = 'asc';
         }
-        this.props.sortInvoiceData(tableStatus);
-        this.setState({tableStatus});
+        this.props.getInvoiceData(tableStatus);
     }
   render() {
-    let {invoiceData:{data, isLoading}}= this.props;
-    let {tableStatus} = this.state; 
+    let {data, isLoading}= this.props.invoiceData;
+    let tableStatus = data.tableStatus;
     const sortClass = name => tableStatus.orderon === name && tableStatus.orderby === 'desc' ? 'up':'down';
     return (
       <div className="page-body-wrapper">
@@ -202,17 +204,17 @@ class InvoicePage extends Component {
                         <span>Patient</span>
                         <span><i className={`fas fa-angle-${sortClass('name')}`}></i></span>
                     </div>
-                    <div className={`cell`} onClick={()=>this.sortTable('date.d')}>
+                    <div className={`cell`} onClick={()=>this.sortTable('issuedate.d')}>
                         <span>Issued Date</span>
-                        <span><i className={`fas fa-angle-${sortClass('date.d')}`}></i></span>
+                        <span><i className={`fas fa-angle-${sortClass('issuedate.d')}`}></i></span>
                     </div>
                     <div className={`cell`} onClick={()=>this.sortTable('status')}>
                         <span>Status</span>
                         <span><i className={`fas fa-angle-${sortClass('status')}`}></i></span>
                     </div>
-                    <div className={`cell`} onClick={()=>this.sortTable('dueDate.d')}>
+                    <div className={`cell`} onClick={()=>this.sortTable('dueon.d')}>
                         <span>Due On</span>
-                        <span><i className={`fas fa-angle-${sortClass('dueDate.d')}`}></i></span>
+                        <span><i className={`fas fa-angle-${sortClass('dueon.d')}`}></i></span>
                     </div>
                     <div className={`cell f-30 text-right`}>
                         <span></span>

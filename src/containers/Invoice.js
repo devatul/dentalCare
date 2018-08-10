@@ -16,7 +16,7 @@ class Invoice extends Component {
   }
   componentWillMount(){
     this.props.getUserData();
-    this.props.getInvoiceData();
+    // this.props.getInvoiceData();
   }
   render() {
     let {collapsed} = this.state;
@@ -49,12 +49,12 @@ const mapDispatchToProps = (dispatch) => {
     getInvoiceData: (params)=> {
       return dispatch(getInvoiceData(params))
     },
-    loadMoreInvoiceData: (params)=>{
-      return dispatch(loadMoreInvoiceData(params));
-    },
-    sortInvoiceData:(params)=>{
-      return dispatch(sortInvoiceData(params));
-    },
+    // loadMoreInvoiceData: (params)=>{
+    //   return dispatch(loadMoreInvoiceData(params));
+    // },
+    // sortInvoiceData:(params)=>{
+    //   return dispatch(sortInvoiceData(params));
+    // },
   }
 };
 

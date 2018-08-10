@@ -7,9 +7,14 @@ const fetchAPI = (url='', method='GET',body={}) =>{
         method: method,
     })
     .then(function(response) {
-        return response.json()
+        console.log('response', response);
+        if(response.ok){
+            return response.json();
+        }
+        throw new Error('Network response was not ok.');
       }).catch(function(e) {
-        console.log('Exception', e)
+        console.log('Exception Service/index.js', e)
+        throw new Error('Network response was not ok.');
       })
 }
 

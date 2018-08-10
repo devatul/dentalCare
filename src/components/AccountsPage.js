@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import SearchInput, {createFilter} from 'react-search-input';
 import $ from "jquery";
-import {isEqual} from 'lodash';
+import {isEqual, cloneDeep} from 'lodash';
 import {isScrolledIntoView} from '../helper';
 
 class AccountsPage extends Component {
     state = {
-        searchTerm: '',
-        tableStatus:{orderon:'', orderby:'',page:1,  range:10},
         selected: [],
         accountsData: this.props.accountsData || {},
     }
     visited = [];
+    componentWillMount(){
+        let {tableStatus} = this.props.accountsData.data;
+        this.props.getAccountsData(tableStatus);
+    }
     componentWillReceiveProps(props){
         if(!isEqual(props.accountsData, this.state.accountsData)){
             let i=0;
@@ -33,11 +35,10 @@ class AccountsPage extends Component {
     }
     handleOnScroll = () => { 
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight && this.props.accountsData.data.rows) {
-            let {tableStatus} = this.state;
+            let tableStatus = cloneDeep(this.props.accountsData.data.tableStatus);
             if(tableStatus.page * tableStatus.range  === this.props.accountsData.data.rows.length){
                 tableStatus.page +=1;
-                this.props.loadMoreAccountsData(tableStatus);
-                this.setState({tableStatus});
+                this.props.getAccountsData(tableStatus);
             }
         }
     }
@@ -55,7 +56,9 @@ class AccountsPage extends Component {
         this.visited =  visited;
     }
     searchUpdated = (term) => {
-        this.setState({searchTerm: term})
+        let tableStatus = cloneDeep(this.props.accountsData.data.tableStatus);
+        tableStatus.searchTerm = term;
+        this.props.getAccountsData(tableStatus);
     }
     handleChecked = (id)=>{
         let {selected} = this.state;
@@ -100,8 +103,8 @@ class AccountsPage extends Component {
                                 <span>{row.name}</span>
                             </div>
                             <div className="cell">
-                                <div className="f-100"><strong>Date : </strong>{row.date.d}</div>
-                                <div className="f-100"><strong>Time : </strong>{row.date.t}</div>
+                                <div className="f-100"><strong>Date : </strong>{row.date}</div>
+                                <div className="f-100"><strong>Time : </strong>{row.time}</div>
                             </div>
                             <div className="cell j-c-s-b">
                                 <span>
@@ -134,7 +137,7 @@ class AccountsPage extends Component {
         return rows;
     }
     sortTable = (column) => {
-        let {tableStatus} = this.state;
+        let tableStatus = cloneDeep(this.props.accountsData.data.tableStatus);
         if(tableStatus.orderon === column && tableStatus.orderby === 'desc' ){
             tableStatus.orderby = 'asc';
         }else if(tableStatus.orderon === column && tableStatus.orderby === 'asc' ){
@@ -143,13 +146,11 @@ class AccountsPage extends Component {
             tableStatus.orderon = column;
             tableStatus.orderby = 'asc';
         }
-        this.props.sortAccountsData(tableStatus);
-        this.setState({tableStatus});
+        this.props.getAccountsData(tableStatus);
     }
   render() {
-      let {accountsData}= this.props;
-      let {isLoading, data} = accountsData;
-      let {tableStatus} = this.state;    
+      let {isLoading, data}= this.props.accountsData;
+      let tableStatus = data.tableStatus;    
       const sortClass = name => tableStatus.orderon === name && tableStatus.orderby === 'desc' ? 'up':'down';
     return (
       <div className="page-body-wrapper">
