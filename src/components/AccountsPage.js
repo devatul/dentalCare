@@ -38,7 +38,8 @@ class AccountsPage extends Component {
             let tableStatus = cloneDeep(this.props.accountsData.data.tableStatus);
             if(tableStatus.page * tableStatus.range  === this.props.accountsData.data.rows.length){
                 tableStatus.page +=1;
-                this.props.getAccountsData(tableStatus);
+                // this.props.getAccountsData(tableStatus);
+                this.props.loadMoreAccountsData(tableStatus);
             }
         }
     }

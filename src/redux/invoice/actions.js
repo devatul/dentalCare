@@ -38,23 +38,24 @@ export const getInvoiceData = (params) => {
 //   };
 // };
 
-// export const loadMoreInvoiceData = (params) => {
-//   return (dispatch, getState) => {
-//     dispatch(actions.getInvoiceRequest());
-//     return new Promise((resolve, reject) => {
-//       fetchAPI(api.loadMoreInvoice(params.page,params.range))
-//       .then((res)=>{
-//         console.log('response', res);
-//         dispatch(actions.loadMoreInvoiceDataSuccess(res))
-//       })
-//       .catch((err)=>{
-//         console.log('Error', err);
-//         dispatch(actions.getInvoiceError(err));
-//       })
+export const loadMoreInvoiceData = (params) => {
+  return (dispatch, getState) => {
+    dispatch(actions.getInvoiceRequest());
+    return new Promise((resolve, reject) => {
+      fetchAPI(api.loadMoreInvoice(params.page,params.range))
+      .then((res)=>{
+        res.tableStatus = params;
+        console.log('response', res);
+        dispatch(actions.loadMoreInvoiceDataSuccess(res))
+      })
+      .catch((err)=>{
+        console.log('Error', err);
+        dispatch(actions.getInvoiceError(err));
+      })
       
-//     });
-//   };
-// };
+    });
+  };
+};
 
 // export const sortInvoiceData = (params) => {
 //   return (dispatch, getState) => {

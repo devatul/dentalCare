@@ -8,6 +8,8 @@ import connected from '../assets/images/icons8-connected-48.png';
 class Sidebar extends Component {
     handleClick = (link) =>{
         this.props.history.push(link)
+        console.log('sasssssssssss');
+        
     }
   render() {
       let {collapsed} = this.props;
@@ -19,17 +21,29 @@ class Sidebar extends Component {
                     <img src={logo}/>
                 </div>
                 <div className="connection">
-                    <span className="icon">
-                        <img src={connected}/>
-                    </span>
-                    <span className="text">connected</span>
+                    <div className="icon-wrapper">
+                        <span className="status">
+                            <span className="icon">
+                                <img src={connected}/>
+                            </span>
+                        </span>
+                    </div>
+                    <div className="full-width">
+                        <div className="profile-text">Gental Dental...<i class="fas fa-angle-down"></i></div>
+                        <div>
+                            <span className="status">
+                                <span className="text">connected</span>
+                            </span>
+                            <span>| 5 sec ago <i class="fas fa-sync"></i></span>
+                        </div>
+                    </div>
                 </div>
                 <div className="menu">
                     <MenuItems page={this.props.page} menuItems={menuData} onClick={this.handleClick}/>
                 </div>
-                <div className="menu-bottom">
-                    <MenuItems page={this.props.page} menuItems={menuBottomData} onClick={this.handleClick} />
-                </div>
+            </div>
+            <div className="menu-bottom">
+                <MenuItems page={this.props.page} menuItems={menuBottomData} onClick={this.handleClick} />
             </div>
         </div>
         <div className={`resize-btn`} onClick={()=>this.props.toggleSidebar()}>

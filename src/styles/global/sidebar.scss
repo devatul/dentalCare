@@ -2,6 +2,7 @@
     display: flex;
     position: fixed;
     left: 0;
+    z-index: 1111;
 }
 .sidebar{
     background: $sidebar-bg;
@@ -11,12 +12,15 @@
     max-width: $sidebar-full-width;
     min-width: $sidebar-full-width;
     transition: width 1s  max-width 1s  min-width 1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .logo-wrapper{
         display: flex;
         text-align: center;
         height: 120px;
         width: 120px;
-        margin: 40px auto;
+        margin: 15px auto;
         border-radius: 50%;
         border: 5px solid #089ad5;
         overflow: hidden;
@@ -28,19 +32,32 @@
         }
     }
     .connection{
-        color: #2dcc71;
-        font-size: 0.8rem;
         display: block;
         text-align: center;
-        .text{
+        color: #fff;
+        font-size: 0.8rem;
+        .icon-wrapper{
+            display: none;
+        }
+        .profile-text{
+            font-size: 1.2rem;
             font-weight: 600;
         }
-        .icon{
-            width: 35px;
-            display: inline-block;
-            img{
-                width: 100%;
+        .status{
+            color: #2dcc71;
+            padding-right: 5px;
+            .text{
+                font-weight: 600;
             }
+            .icon{
+                width: 35px;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        i{
+            padding-left: 10px;
         }
     }
     .content-wrapper{
@@ -49,8 +66,9 @@
         height: 100%;
     }
     .menu-bottom{
-        bottom: 0;
-        position: absolute;
+        // bottom: 0;
+        // position: absolute;
+        padding: 0px 10px;
     }
     .menu-item{
         color: $white;
@@ -94,8 +112,11 @@
             margin: 10px auto;
         }
         .connection{
-            .text{
+            .full-width{
                 display: none;
+            }
+            .icon-wrapper{
+                display: block;
             }
         }
         
@@ -157,8 +178,11 @@
             margin: 10px auto;
         }
         .connection{
-            .text{
+            .full-width{
                 display: none;
+            }
+            .icon-wrapper{
+                display: block;
             }
         }
     }

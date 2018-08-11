@@ -38,22 +38,23 @@ export const getAccountsData = (params) => {
 //   };
 // };
 
-// export const loadMoreAccountsData = (params) => {
-//   return (dispatch, getState) => {
-//     return new Promise((resolve, reject) => {
-//       dispatch(actions.getAccountsRequest());
-//       fetchAPI(api.loadMoreAccounts(params.page,params.range))
-//       .then((res)=>{
-//         console.log('response', res);
-//         dispatch(actions.loadMoreAccountsDataSuccess(res))
-//       })
-//       .catch((err)=>{
-//         console.log('Error', err);
-//         dispatch(actions.getAccountsError(err));
-//       })
-//     });
-//   };
-// };
+export const loadMoreAccountsData = (params) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch(actions.getAccountsRequest());
+      fetchAPI(api.loadMoreAccounts(params.page,params.range))
+      .then((res)=>{
+        res.tableStatus = params;
+        console.log('response', res);
+        dispatch(actions.loadMoreAccountsDataSuccess(res))
+      })
+      .catch((err)=>{
+        console.log('Error', err);
+        dispatch(actions.getAccountsError(err));
+      })
+    });
+  };
+};
 
 // export const sortAccountsData = (params) => {
 //   return (dispatch, getState) => {

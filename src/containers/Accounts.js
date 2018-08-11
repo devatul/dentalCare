@@ -37,6 +37,7 @@ class Accounts extends Component {
     let {collapsed} = this.state;
     let {accountDetails} = this.props;
     console.log('accountDetails', accountDetails);
+    console.log('collapsed', collapsed);
     
     return (
       <div  id="app" className={`app app-home ${collapsed ? 'collapsed' : ''}`}>
@@ -73,9 +74,9 @@ const mapDispatchToProps = (dispatch) => {
     getAccountsData: (params)=> {
       return dispatch(getAccountsData(params))
     },
-    // loadMoreAccountsData: (params)=>{
-    //   return dispatch(loadMoreAccountsData(params));
-    // },
+    loadMoreAccountsData: (params)=>{
+      return dispatch(loadMoreAccountsData(params));
+    },
     // sortAccountsData:(params)=>{
     //   return dispatch(sortAccountsData(params));
     // },

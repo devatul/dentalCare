@@ -56,7 +56,8 @@ class InvoicePage extends Component {
             let tableStatus = cloneDeep(this.props.invoiceData.data.tableStatus);
             if(tableStatus.page * tableStatus.range  === this.props.invoiceData.data.rows.length){
                 tableStatus.page +=1;
-                this.props.getInvoiceData(tableStatus);
+                // this.props.getInvoiceData(tableStatus);
+                this.props.loadMoreInvoiceData(tableStatus);
             }
         }
     }

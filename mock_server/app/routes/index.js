@@ -10,17 +10,28 @@ router.get('/accounts', function (req, res) {
   let {page, range, orderby, orderon, search} = req.query
   page = parseInt(page);
   range = parseInt(range);
-  let start =   0,//((page - 1) * range),
-      end   =   page * range,//start + range,
+  let start =   (page - 1) * range,
+      end   =   start + range,
       rows  =   account_data.rows;
   if(search){
+    start = 0;
     rows = _.filter(rows, function(row) { 
       return _.includes((row.name).toLowerCase(), search.toLowerCase()) 
+            || _.includes((row.lastname).toLowerCase(), search.toLowerCase())
             || _.includes((row.status).toLowerCase(), search.toLowerCase());
     });
   }
   if(orderon && orderby){
-    rows = _.orderBy(rows, [orderon], [orderby]);
+    start = 0;
+    let keys = [];
+    if(orderon === 'name'){
+      keys = ['firstname', 'lastname'];
+    }else if (orderon === 'status'){
+      keys = ['status', 'date'];
+    } else if (orderon === 'amount'){
+      keys = ['amount'];
+    }
+    rows = _.orderBy(rows, keys, [orderby]);
   }
   rows = _.slice(rows,[start],[end]);
   res.send({rows});
@@ -31,17 +42,28 @@ router.get('/invoices', function (req, res) {
   let {page, range, orderby, orderon, search} = req.query
   page = parseInt(page);
   range = parseInt(range);
-  let start =   0,//((page - 1) * range),
-      end   =   page * range,//start + range,
+  let start =   (page - 1) * range,
+      end   =   start + range,
       rows  =   invoice_data.rows;
   if(search){
+    start = 0;
     rows = _.filter(rows, function(row) { 
-      return _.includes((row.name).toLowerCase(), search.toLowerCase()) 
+      return _.includes((row.firstname).toLowerCase(), search.toLowerCase()) 
+            || _.includes((row.lastname).toLowerCase(), search.toLowerCase())
             || _.includes((row.status).toLowerCase(), search.toLowerCase());
     });
   }
   if(orderon && orderby){
-    rows = _.orderBy(rows, [orderon], [orderby]);
+    start = 0;
+    let keys = [];
+    if(orderon === 'name'){
+      keys = ['firstname', 'lastname'];
+    }else if (orderon === 'status'){
+      keys = ['status', 'date'];
+    } else if (orderon === 'dueon'){
+      keys = ['dueon'];
+    }
+    rows = _.orderBy(rows, keys, [orderby]);
   }
   rows = _.slice(rows,[start],[end]);
   res.send({rows});

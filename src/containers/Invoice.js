@@ -49,9 +49,9 @@ const mapDispatchToProps = (dispatch) => {
     getInvoiceData: (params)=> {
       return dispatch(getInvoiceData(params))
     },
-    // loadMoreInvoiceData: (params)=>{
-    //   return dispatch(loadMoreInvoiceData(params));
-    // },
+    loadMoreInvoiceData: (params)=>{
+      return dispatch(loadMoreInvoiceData(params));
+    },
     // sortInvoiceData:(params)=>{
     //   return dispatch(sortInvoiceData(params));
     // },
