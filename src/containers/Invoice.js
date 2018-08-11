@@ -24,7 +24,7 @@ class Invoice extends Component {
     
     return (
       <div  id="app" className={`app app-invoice ${collapsed ? 'collapsed' : ''}`}>
-        <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
+        <Sidebar page="Invoices" toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
         <div className="main-page">
           <Header />
           <InvoicePage {...this.props}/>

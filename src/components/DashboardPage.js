@@ -8,7 +8,7 @@ class DashboardPage extends Component {
         if(data.rows.length){
             data.rows.map((row, i)=>{
                 rows.push(
-                    <div key={i} className="card">
+                    <div key={i} className="card p-20">
                         <div className="cell">
                             <span>{row.name}</span>
                         </div>
@@ -24,7 +24,7 @@ class DashboardPage extends Component {
             })
         }else{
             rows.push(
-                <div className="card">
+                <div className="card p-20">
                     <div className="cell">
                         <span>There are no payments</span>
                     </div>
@@ -45,7 +45,7 @@ class DashboardPage extends Component {
             <div className="alert">Tasks needing your attention.</div>
             <h3>Recent Payments</h3>
             <div className="table-wrapper">
-                <div className="content-header">
+                <div className="table-header">
                     <div className="cell">
                         <span>{header[0]}</span>
                         <span><i className="fas fa-angle-down"></i></span>
@@ -59,7 +59,7 @@ class DashboardPage extends Component {
                         <span><i className="fas fa-angle-down"></i></span>
                     </div>
                 </div>
-                <div className="content-body">
+                <div className="table-body">
                     {this.getTableBody()}
                 </div>
             </div>

@@ -84,6 +84,8 @@ class InvoicePage extends Component {
         let {selected} = this.state;        
         if(data.rows && data.rows.length){
             data.rows.map((row, i)=>{
+                var amt = (row.amount + ""),
+                amtarray  = amt.split(".");
                 let checked = selected.includes(row.id);
                 let family = [];
                 row.family && row.family.map((m,j)=>{
@@ -96,39 +98,38 @@ class InvoicePage extends Component {
                 })
                 rows.push(
                     <div key={i+1} id={`row_${row.id}`} className={`card  ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
-                        <div className="parant">
-                            {/* <div className="cell f-30">
-                                <span>{i+1}</span>
-                            </div> */}
-                            <div className="cell f-10">
-                                <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
-                                    <input type="checkbox" checked={checked}/>
-                                </span>
+                        <div className="col-checkbox">
+                            <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
+                                <input type="checkbox" checked={checked}/>
+                            </span>
+                        </div>
+                        <div className="row-content">
+                            <div className="parant">
+                                <div className="cell col-name">
+                                    <span className="profile-image"><i className="fas fa-user-circle"></i></span>
+                                    <span className="lastname">{row.lastname},</span>
+                                    <span className="firstname">{row.firstname}</span>
+                                </div>
+                                <div className="cell col-status">
+                                    <span className={`status ${row.status}`}>{row.status}</span> 
+                                    <span className={`date`}>{row.date}</span>
+                                </div>
+                                <div className="cell col-amount">
+                                    <div className="col-amount">
+                                        <span className="doller">${amtarray[0]}.</span>
+                                        <span className="cent">{amtarray[1]}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cell">
-                                <span>{row.name}</span>
-                            </div>
-                            <div className="cell col-date">
-                                <div className="block"><strong>Date : </strong>{row.issuedate.d}</div>
-                                <div className="block"><strong>Time : </strong>{row.issuedate.t}</div>
-                            </div>
-                            <div className="cell">
-                                <span className="dot"></span>
-                                <span>{row.status}</span> 
-                            </div>
-                            <div className="cell col-date">
-                                <div className="block"><strong>Date : </strong>{row.dueon.d}</div>
-                                <div className="block"><strong>Time : </strong>{row.dueon.t}</div>
-                            </div>
-                            <div className="cell f-30 hide" >
-                                <div className="f-100">{row.link}</div>
+                            <div className="family">
+                                <div className="cell f-1-rem w-1-rem"></div>
+                                <div className="members">
+                                    {family}
+                                </div>
                             </div>
                         </div>
-                        <div className="family">
-                            <div className="cell f-2-rem w-2-rem"></div>
-                            <div className="members">
-                                {family}
-                            </div>
+                        <div className="detail-page-link">
+                            <i className="fas fa-angle-right"></i>
                         </div>
                     </div>
                 )
@@ -198,30 +199,31 @@ class InvoicePage extends Component {
                 <SearchInput className="search-input" onChange={this.searchUpdated} />
             </div>
             <div className="table-wrapper">
-                <div className="content-header">
-                    <div className={`cell f-10`}></div>
-                    <div className={`cell`} onClick={()=>this.sortTable('name')}>
-                        <span>Patient</span>
-                        <span><i className={`fas fa-angle-${sortClass('name')}`}></i></span>
+                <div className="table-header">
+                    <div className={`col-checkbox`}>
+                        <span className={`checkbox-wrapper`} >
+                            <input type="checkbox" checked={false}/>
+                        </span>
                     </div>
-                    <div className={`cell`} onClick={()=>this.sortTable('issuedate.d')}>
-                        <span>Issued Date</span>
-                        <span><i className={`fas fa-angle-${sortClass('issuedate.d')}`}></i></span>
+                    <div className="headers">
+                        <div className='cell' onClick={()=>this.sortTable('name')}>
+                            <span>Patient</span>
+                            <span><i className={`fas fa-angle-${sortClass('name')}`}></i></span>
+                        </div>
+                        <div className='cell' onClick={()=>this.sortTable('status')}>
+                            <span>Status</span>
+                            <span><i className={`fas fa-angle-${sortClass('status')}`}></i></span>
+                        </div>
+                        <div className='cell' onClick={()=>this.sortTable('date')}>
+                            <span>Amount</span>
+                            <span><i className={`fas fa-angle-${sortClass('date')}`}></i></span>
+                        </div>
                     </div>
-                    <div className={`cell`} onClick={()=>this.sortTable('status')}>
-                        <span>Status</span>
-                        <span><i className={`fas fa-angle-${sortClass('status')}`}></i></span>
-                    </div>
-                    <div className={`cell`} onClick={()=>this.sortTable('dueon.d')}>
-                        <span>Due On</span>
-                        <span><i className={`fas fa-angle-${sortClass('dueon.d')}`}></i></span>
-                    </div>
-                    <div className={`cell f-30 text-right hide`}>
-                        <span></span>
-                        <span><i className="fas fa-angle-down"></i></span>
+                    <div className="detail-page-link">
+                        <i className="fas fa-angle-right"></i>
                     </div>
                 </div>
-                <div className="content-body">
+                <div className="table-body">
                     {this.getTableBody()}
                     {isLoading && <div className="loading"><i className="fas fa-spinner fa-spin"></i></div>}
                 </div>

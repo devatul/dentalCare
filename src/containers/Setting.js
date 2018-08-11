@@ -20,7 +20,7 @@ class Setting extends Component {
     let {collapsed} = this.state;
     return (
       <div  id="app" className={`app app-home ${collapsed ? 'collapsed' : ''}`}>
-        <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
+        <Sidebar page="Settings" toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
         <div className="main-page">
           <Header />
           <SettingPage {...this.props}/>

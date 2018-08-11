@@ -40,7 +40,7 @@ class Accounts extends Component {
     
     return (
       <div  id="app" className={`app app-home ${collapsed ? 'collapsed' : ''}`}>
-        <Sidebar toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
+        <Sidebar page="Accounts" toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />
         <div className="main-page">
           <Header />
           <div id="account">

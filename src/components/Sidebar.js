@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import MenuItems from './MenuItems';
 import {menuData, menuBottomData} from '../constants'
+import logo from '../assets/images/logo.png';
+import connected from '../assets/images/icons8-connected-48.png';
 
 class Sidebar extends Component {
     handleClick = (link) =>{
@@ -13,11 +15,20 @@ class Sidebar extends Component {
       <div className="sidebar-wrapper">
           <div className="sidebar">
             <div className="content-wrapper">
+                <div className="logo-wrapper">
+                    <img src={logo}/>
+                </div>
+                <div className="connection">
+                    <span className="icon">
+                        <img src={connected}/>
+                    </span>
+                    <span className="text">connected</span>
+                </div>
                 <div className="menu">
-                    <MenuItems menuItems={menuData} onClick={this.handleClick}/>
+                    <MenuItems page={this.props.page} menuItems={menuData} onClick={this.handleClick}/>
                 </div>
                 <div className="menu-bottom">
-                    <MenuItems menuItems={menuBottomData} onClick={this.handleClick} />
+                    <MenuItems page={this.props.page} menuItems={menuBottomData} onClick={this.handleClick} />
                 </div>
             </div>
         </div>

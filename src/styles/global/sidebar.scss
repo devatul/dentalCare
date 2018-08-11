@@ -11,6 +11,38 @@
     max-width: $sidebar-full-width;
     min-width: $sidebar-full-width;
     transition: width 1s  max-width 1s  min-width 1s;
+    .logo-wrapper{
+        display: flex;
+        text-align: center;
+        height: 120px;
+        width: 120px;
+        margin: 40px auto;
+        border-radius: 50%;
+        border: 5px solid #089ad5;
+        overflow: hidden;
+        background: #fff;
+        margin-bottom: 7px;
+        img{
+            width: 100%;
+            margin: auto;
+        }
+    }
+    .connection{
+        color: #2dcc71;
+        font-size: 0.8rem;
+        display: block;
+        text-align: center;
+        .text{
+            font-weight: 600;
+        }
+        .icon{
+            width: 35px;
+            display: inline-block;
+            img{
+                width: 100%;
+            }
+        }
+    }
     .content-wrapper{
         padding: 0 10px;
         text-align: center;
@@ -29,7 +61,7 @@
         border-radius: 40px;
         padding: 5px 10px;
         &.active{
-            background: rgba(14, 157, 214, 0.57);
+            background: rgba(190, 236, 254, 0.58);
         }
         .icon{
             display: inline-block;
@@ -56,6 +88,17 @@
                 display: none;
             }
         }
+        .logo-wrapper{
+            height: 55px;
+            width: 55px;
+            margin: 10px auto;
+        }
+        .connection{
+            .text{
+                display: none;
+            }
+        }
+        
     }
 }
 .resize-btn{
@@ -108,6 +151,16 @@
                 display: none;
             }
         }
+        .logo-wrapper{
+            height: 55px;
+            width: 55px;
+            margin: 10px auto;
+        }
+        .connection{
+            .text{
+                display: none;
+            }
+        }
     }
     .resize-btn{
         display: none;
@@ -124,6 +177,16 @@
             margin: .5rem 0;
             .icon{
                 font-size: 1rem;
+            }
+        }
+        .logo-wrapper{
+            height: 40px;
+            width: 40px;
+            margin: 10px auto;
+        }
+        .connection{
+            .icon{
+                width: 27px;
             }
         }
     }

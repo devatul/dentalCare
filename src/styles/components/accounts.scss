@@ -1,14 +1,18 @@
 .accounts{
-    .content-header{
+    .table-header{
         border-left: 5px solid transparent;
     }
-    .content-body{
+    .table-body{
         .card{
             border-left: 5px solid red;
-            .detail-page-link{
-                color: #27acd9;
-                float: right;
-                cursor: pointer;
+            &.paid{
+                border-left-color: green;
+            }
+            &.unpaid{
+                border-left-color: red;
+            }
+            &.invoiced{
+                border-left-color: orange;
             }
         }
     }
@@ -157,5 +161,19 @@
                 display: none !important;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .accounts{
+        .table-header{
+            border-left: 0;
+        }
+        .table-body{
+            .card{
+                border-left: 0;
+            }
+        }
+    
     }
 }

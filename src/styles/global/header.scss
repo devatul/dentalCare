@@ -8,17 +8,31 @@
             // padding: 0 10px; 
             display: flex;
             align-items: center;
-            font-size: 3rem;
+            font-size: 1.7rem;
             margin: 0 10px;
             cursor: pointer;
             color: #2dafd9;
         }
         .bell{
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         img{
             width:35px;
             border-radius: 100px;
         }
     }
+}
+
+@media only screen and (max-width: 600px){
+    .header{
+        .profile-sec{
+            .icon{
+                font-size: 1rem;
+            }
+            .bell{
+                font-size: 1rem;
+            }
+        }
+    }
+    
 }

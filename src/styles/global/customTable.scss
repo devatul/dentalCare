@@ -1,11 +1,35 @@
 .table-wrapper{
     display: block;
-    // overflow: auto;
+    .col-checkbox{
+        padding: 17px 7px;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        display: flex;
+    }
+    .detail-page-link{
+        color: gray;
+        float: right;
+        cursor: pointer;
+        padding: 20px 10px;
+        background: #d7dbde;
+        height: 100%;   
+        border-left: 1px solid gray;  
+        align-items: center;
+        display: flex;       
+    }
 }
-.content-header{
+.table-header{
     display: flex;
     justify-content: space-between;
     color: gray;
+    .col-checkbox, .detail-page-link{
+        opacity: 0;
+    }
+    .headers{
+        flex-basis: 100%;
+        display: flex;
+    }
     .cell{
         display: flex;
         flex-basis: 100%;
@@ -16,20 +40,24 @@
             cursor: pointer;
         }
     }
-    .col-checkbox-header{
-        flex-basis: 1rem !important;
-        min-width: 1rem;
-    }
 }
-.content-body{
+.table-body{
     overflow-y: hidden;
     .card{
-        align-items: center;
+        align-items: start;
         justify-content: space-between;
         background: #e0eff7;
-        margin: 2% 0;
-        padding: 1% .50%;
+        margin: 1.5% 0;
         border-radius: 3px;
+        display: flex;
+        transition: height 1s;
+        .row-content{
+            flex-basis: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            padding: 10px 0;
+        }
         .cell{
             display: flex;
             flex-basis: 100%;
@@ -51,24 +79,50 @@
                 transition: height .5s;
             }
         }
-        .col-checkbox{
-            flex-basis: 1rem !important;
-            min-width: 1rem;
-            justify-content: center;
-        }
         .checkbox-wrapper{ 
             display: block;
             opacity: 0; 
             padding: 0px;
 
         }
-        .col-date{
-            .block{
-                display: block;
-                width: 100%;
+        .col-name{
+            .profile-image{
+                font-size: 1rem;
+            }
+            .lastname{
+                font-size: .9rem;
+            }
+            .firstname{
+                font-size: .7rem;
+            }
+        }
+        .col-amount{
+            .doller{
+                font-size: .9rem;
+            }
+            .cent{
+                font-size: .7rem;
             }
             span{
-                padding: 0px !important;
+                padding: 0px;
+            }
+        }
+        .col-status{
+            .status{
+                flex-basis: 100%;
+                font-weight: 600;
+                &.paid{
+                    color: green;
+                }
+                &.unpaid{
+                    color: red;
+                }
+                &.invoiced{
+                    color: orange;
+                }
+            }
+            .date{
+                flex-basis: 100%;
             }
         }
         &:hover{
@@ -78,13 +132,18 @@
             }
         }
         &.selected{
-            background: #2996d0;
+            background: rgba(41, 150, 208, 0.52);
             .checkbox-wrapper{
                 opacity: 1;
             }
             .member{
                 height: 50px;
                 transition: height .5s;
+            }
+            .detail-page-link{
+                border-bottom: 1px solid;
+                border-color: #22a5ea;
+                background: rgba(169, 191, 203, 0.55);
             }
         }
     }
@@ -111,7 +170,7 @@
   }
 
 @media only screen and (max-width: 1100px) {
-    .content-header{
+    .table-header{
         .cell{
             font-size: 1rem;
             span{
@@ -119,7 +178,7 @@
             }
         }
     }
-    .content-body{
+    .table-body{
         .card{
             .cell{
                 font-size: .7rem;
@@ -129,20 +188,19 @@
 }
 
 @media only screen and (max-width: 450px) {
-    .content-header{
+    .table-header{
         .cell{
             font-size: .8rem;
         }
     }
-    .content-body{
+    .table-body{
         .card{
-            .col-date{
-                span{
-                    display: block;
-                    width: 100%;
-                }
-                .m-w-max-content{
-                    min-width: max-content;
+            margin: 0;
+            border-radius: 0;
+            border-bottom: 1px solid gray;
+            .col-name{
+                .profile-image{
+                    display: none;
                 }
             }
         }
