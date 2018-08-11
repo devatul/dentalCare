@@ -93,12 +93,12 @@ class AccountsPage extends Component {
                     </div>
                 </div>)
                 })
-                let styles = {};
+                let styles = {height:'58px'};
                 if(checked && family.length){
-                    styles.height = `${50+(40*family.length)}px`;
-                }
+                    styles.height = `${58+(50*family.length)}px`;                    
+                }                
                 rows.push(
-                    <div key={i+1} id={`row_${row.id}`} className={`card ${row.status} ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
+                    <div key={i+1} id={`row_${row.id}`} style={styles} className={`card ${row.status} ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
                         <div className="col-checkbox">
                                 <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
                                     <input type="checkbox" checked={checked}/>
@@ -129,7 +129,7 @@ class AccountsPage extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="detail-page-link" style={{styles}} onClick={()=>this.props.pageDetails(row)}>
+                        <div className="detail-page-link" onClick={()=>this.props.pageDetails(row)}>
                             <i className="fas fa-angle-right"></i>
                         </div>
                     </div>

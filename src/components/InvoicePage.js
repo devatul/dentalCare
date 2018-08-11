@@ -97,8 +97,12 @@ class InvoicePage extends Component {
                     </div>
                 </div>)
                 })
+                let styles = {height:'58px'};
+                if(checked && family.length){
+                    styles.height = `${58+(50*family.length)}px`;                    
+                } 
                 rows.push(
-                    <div key={i+1} id={`row_${row.id}`} className={`card  ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
+                    <div key={i+1} id={`row_${row.id}`} style={styles} className={`card  ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
                         <div className="col-checkbox">
                             <span className={`checkbox-wrapper ${checked ? 'show' : ''}`} >
                                 <input type="checkbox" checked={checked}/>

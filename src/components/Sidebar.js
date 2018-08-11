@@ -7,9 +7,7 @@ import connected from '../assets/images/icons8-connected-48.png';
 
 class Sidebar extends Component {
     handleClick = (link) =>{
-        this.props.history.push(link)
-        console.log('sasssssssssss');
-        
+        this.props.history.push(link)        
     }
   render() {
       let {collapsed} = this.props;

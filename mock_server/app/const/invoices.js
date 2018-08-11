@@ -19,6 +19,8 @@ var exports = module.exports = {
             date:'01/20/18',
             family:[
                 {firstName:'John', lastName:'Smith'},
+                {firstName:'John', lastName:'Smith'},
+                {firstName:'John', lastName:'Smith'},   
             ]
         },
         {
