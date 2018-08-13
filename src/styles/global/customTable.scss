@@ -75,9 +75,10 @@
         .family{
             display: flex;
             overflow: hidden;
-            padding: 10px 0;
+            // padding: 10px 0;
             .member{
-                margin: 10px 0;
+                // margin: 10px 0;
+                padding: 10px 0;
             }
         }
         .checkbox-wrapper{ 

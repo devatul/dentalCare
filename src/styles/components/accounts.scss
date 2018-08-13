@@ -130,7 +130,7 @@
     display: none;
 }
 
-#account {
+#account, #invoice  {
     position: relative;
     width: 100%;
 }
@@ -140,11 +140,11 @@
     width: 100%;
 }
 
-#account-page {
+#account-page, #invoice-page {
     display:inline-block;
 }
 
-#account-detail-page {
+#account-detail-page, #invoice-detail-page {
     float:left;
 }
 @media only screen and (max-width: 600px) {

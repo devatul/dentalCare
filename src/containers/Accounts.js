@@ -35,10 +35,7 @@ class Accounts extends Component {
   }
   render() {
     let {collapsed} = this.state;
-    let {accountDetails} = this.props;
-    console.log('accountDetails', accountDetails);
-    console.log('collapsed', collapsed);
-    
+    let {accountDetails} = this.props;    
     return (
       <div  id="app" className={`app app-home ${collapsed ? 'collapsed' : ''}`}>
         <Sidebar page="Accounts" toggleSidebar={()=>this.setState({collapsed:!this.state.collapsed})} collapsed={collapsed} />

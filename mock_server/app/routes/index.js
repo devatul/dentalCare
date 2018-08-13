@@ -16,7 +16,7 @@ router.get('/accounts', function (req, res) {
   if(search){
     start = 0;
     rows = _.filter(rows, function(row) { 
-      return _.includes((row.name).toLowerCase(), search.toLowerCase()) 
+      return _.includes((row.firstname).toLowerCase(), search.toLowerCase()) 
             || _.includes((row.lastname).toLowerCase(), search.toLowerCase())
             || _.includes((row.status).toLowerCase(), search.toLowerCase());
     });

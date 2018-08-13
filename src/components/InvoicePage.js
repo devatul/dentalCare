@@ -5,6 +5,7 @@ import $ from "jquery";
 import {isEqual, cloneDeep} from 'lodash';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import {isScrolledIntoView} from '../helper';
+import {initialTableStatus} from '../constants';
 
 class InvoicePage extends Component {
     state = {
@@ -12,9 +13,10 @@ class InvoicePage extends Component {
         invoiceData:this.props.invoiceData || {},
     }
     visited = [];
+    currentPage = 1;
     componentWillMount(){
-        let {tableStatus} = this.props.invoiceData.data;
-        this.props.getInvoiceData(tableStatus);
+        // let {tableStatus} = this.props.invoiceData.data;
+        this.props.getInvoiceData(initialTableStatus);
     }
     componentWillReceiveProps(props){
         if(!isEqual(props.invoiceData, this.state.invoiceData)){
@@ -33,10 +35,10 @@ class InvoicePage extends Component {
 
     }
     componentDidMount(){
-        $(document).scroll(()=>{
-            this.handleOnScroll();
-            this.animateRow();
-        })
+        document.addEventListener('scroll', this.handleOnScroll);
+    }
+    componentWillUnmount(){
+        document.removeEventListener('scroll', this.handleOnScroll);
     }
     animateRow = ()=>{
         let visited = this.visited;
@@ -52,10 +54,12 @@ class InvoicePage extends Component {
         this.visited = visited;
     }
     handleOnScroll = () => { 
+        this.animateRow();
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight && this.props.invoiceData.data.rows) {
             let tableStatus = cloneDeep(this.props.invoiceData.data.tableStatus);
-            if(tableStatus.page * tableStatus.range  === this.props.invoiceData.data.rows.length){
+            if(tableStatus.page * tableStatus.range  === this.props.invoiceData.data.rows.length &&  this.currentPage === tableStatus.page){
                 tableStatus.page +=1;
+                this.currentPage += 1; 
                 // this.props.getInvoiceData(tableStatus);
                 this.props.loadMoreInvoiceData(tableStatus);
             }
@@ -91,15 +95,16 @@ class InvoicePage extends Component {
                 let family = [];
                 row.family && row.family.map((m,j)=>{
                     family.push(<div key={j+1} className="member">
-                    <div className="cell">
-                        <div className="f-100"><strong>Fist Name : </strong>{m.firstName}</div>
-                        <div className="f-100"><strong>Last Name : </strong>{m.lastName}</div>
+                    <div className="cell col-name">
+                        <span className="profile-image"><i className="fas fa-user-circle"></i></span>
+                        <span className="lastname">{m.lastName},</span>
+                        <span className="firstname">{m.firstName}</span>
                     </div>
                 </div>)
                 })
                 let styles = {height:'58px'};
                 if(checked && family.length){
-                    styles.height = `${58+(50*family.length)}px`;                    
+                    styles.height = `${58+(42*family.length)}px`;                    
                 } 
                 rows.push(
                     <div key={i+1} id={`row_${row.id}`} style={styles} className={`card  ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
@@ -111,9 +116,11 @@ class InvoicePage extends Component {
                         <div className="row-content">
                             <div className="parant">
                                 <div className="cell col-name">
-                                    <span className="profile-image"><i className="fas fa-user-circle"></i></span>
-                                    <span className="lastname">{row.lastname},</span>
-                                    <span className="firstname">{row.firstname}</span>
+                                    <div className="col-name">
+                                        <span className="profile-image"><i className="fas fa-user-circle"></i></span>
+                                        <span className="lastname">{row.lastname},</span>
+                                        <span className="firstname">{row.firstname}</span>
+                                    </div>
                                 </div>
                                 <div className="cell col-status">
                                     <span className={`status ${row.status}`}>{row.status}</span> 
@@ -133,7 +140,7 @@ class InvoicePage extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="detail-page-link">
+                        <div className="detail-page-link" onClick={()=>this.props.pageDetails(row)}>
                             <i className="fas fa-angle-right"></i>
                         </div>
                     </div>
@@ -141,7 +148,7 @@ class InvoicePage extends Component {
             })
         }else if(!isLoading){
             rows.push(
-                <div key={'No-Date'} className="card">
+                <div key={'No-Date'} className="card p-20">
                     <div className="cell">
                         <span>No data available in table</span>
                     </div>

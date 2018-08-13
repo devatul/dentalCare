@@ -47,9 +47,7 @@ class App1 extends Component {
     super();
   } 
 
-  render() {
-    console.log('2222222222222222');
-    
+  render() {    
     return (
           <Switch>
             <Route exact path="/" render={(props)=><Dashboard {...props} data={dashboard} />} />

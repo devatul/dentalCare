@@ -4,6 +4,7 @@ import SearchInput, {createFilter} from 'react-search-input';
 import $ from "jquery";
 import {isEqual, cloneDeep} from 'lodash';
 import {isScrolledIntoView} from '../helper';
+import {initialTableStatus} from '../constants';
 
 class AccountsPage extends Component {
     state = {
@@ -11,9 +12,10 @@ class AccountsPage extends Component {
         accountsData: this.props.accountsData || {},
     }
     visited = [];
+    currentPage = 1;
     componentWillMount(){
-        let {tableStatus} = this.props.accountsData.data;
-        this.props.getAccountsData(tableStatus);
+        // let {tableStatus} = this.props.accountsData.data;
+        this.props.getAccountsData(initialTableStatus);
     }
     componentWillReceiveProps(props){
         if(!isEqual(props.accountsData, this.state.accountsData)){
@@ -28,16 +30,18 @@ class AccountsPage extends Component {
         }
     }
     componentDidMount(){
-        $(document).scroll(()=>{
-            this.handleOnScroll();
-            this.animateRow();
-        })
+        document.addEventListener('scroll', this.handleOnScroll);
+    }
+    componentWillUnmount(){
+        document.removeEventListener('scroll', this.handleOnScroll);
     }
     handleOnScroll = () => { 
+        this.animateRow();
         if ((window.innerHeight + window.scrollY) === document.body.scrollHeight && this.props.accountsData.data.rows) {
             let tableStatus = cloneDeep(this.props.accountsData.data.tableStatus);
-            if(tableStatus.page * tableStatus.range  === this.props.accountsData.data.rows.length){
+            if(tableStatus.page * tableStatus.range  === this.props.accountsData.data.rows.length && this.currentPage === tableStatus.page){
                 tableStatus.page +=1;
+                this.currentPage += 1; 
                 // this.props.getAccountsData(tableStatus);
                 this.props.loadMoreAccountsData(tableStatus);
             }
@@ -87,15 +91,16 @@ class AccountsPage extends Component {
                 let family = [];
                 row.family && row.family.map((m,j)=>{
                     family.push(<div key={j+1} className="member">
-                    <div className="cell">
-                        <div className="f-100"><strong>Fist Name : </strong>{m.firstName}</div>
-                        <div className="f-100"><strong>Last Name : </strong>{m.lastName}</div>
+                    <div className="cell col-name">
+                        <span className="profile-image"><i className="fas fa-user-circle"></i></span>
+                        <span className="lastname">{m.lastName},</span>
+                        <span className="firstname">{m.firstName}</span>
                     </div>
                 </div>)
                 })
                 let styles = {height:'58px'};
                 if(checked && family.length){
-                    styles.height = `${58+(50*family.length)}px`;                    
+                    styles.height = `${58+(42*family.length)}px`;                    
                 }                
                 rows.push(
                     <div key={i+1} id={`row_${row.id}`} style={styles} className={`card ${row.status} ${checked ? 'selected' : ''}`} onClick={()=>this.handleChecked(row.id)}>
@@ -137,7 +142,7 @@ class AccountsPage extends Component {
             })
         }else if(!isLoading){
             rows.push(
-                <div key="no-data" className="card">
+                <div key="no-data" className="card p-20">
                     <div className="cell">
                         <span>No data available in table</span>
                     </div>

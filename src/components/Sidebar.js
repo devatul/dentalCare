@@ -27,12 +27,12 @@ class Sidebar extends Component {
                         </span>
                     </div>
                     <div className="full-width">
-                        <div className="profile-text">Gental Dental...<i class="fas fa-angle-down"></i></div>
+                        <div className="profile-text">Gental Dental...<i className="fas fa-angle-down"></i></div>
                         <div>
                             <span className="status">
                                 <span className="text">connected</span>
                             </span>
-                            <span>| 5 sec ago <i class="fas fa-sync"></i></span>
+                            <span>| 5 sec ago <i className="fas fa-sync"></i></span>
                         </div>
                     </div>
                 </div>

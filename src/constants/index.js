@@ -11,6 +11,7 @@ export const menuBottomData = [
     {label:'Help', icon:'fa-question-circle', link:'/help'}
 ]
 
+export const initialTableStatus = {page:1,  range:10, orderon:'', orderby:'', searchTerm:''};
 export const accounts = {
     rows : [
         {

@@ -2,13 +2,13 @@ import {handleActions} from 'redux-actions';
 import update from 'immutability-helper';
 import {findIndex, cloneDeep, find, extend, remove} from 'lodash';
 import * as constants from '../../redux/constants';
-
+import {initialTableStatus} from '../../constants';
 
 const initialState = {
     accounts: {
       data:      {
         rows:[],
-        tableStatus:{page:1,  range:10, orderon:'', orderby:'', searchTerm:''},
+        tableStatus:initialTableStatus,
       },
       isLoading: false,
       isError:   false,
