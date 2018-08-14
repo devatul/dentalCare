@@ -11,9 +11,13 @@
             padding: 10px 15px;
             font-size: 1rem; 
             border-radius: 0px;
-
         }
         .btn-default:hover{
+            background-color: #74cdee;
+            border-color: #22a9d8;
+            color: #fff;
+        }
+        .active{
             background-color: #74cdee;
             border-color: #22a9d8;
             color: #fff;
@@ -55,7 +59,7 @@
         .range-wrapper{
             margin: 1rem 0;
             button{
-                padding: 5px 5px;
+                padding: 5px 4px;
                 font-size: .7rem;   
             }
         }

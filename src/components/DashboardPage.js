@@ -24,7 +24,7 @@ class DashboardPage extends Component {
             })
         }else{
             rows.push(
-                <div key={'No-data'} className="card p-20">
+                <div key={'No-data'} className="card no-data-card p-20">
                     <div className="cell">
                         <span>There are no payments</span>
                     </div>

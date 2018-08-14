@@ -15,7 +15,6 @@ class InvoicePage extends Component {
     visited = [];
     currentPage = 1;
     componentWillMount(){
-        // let {tableStatus} = this.props.invoiceData.data;
         this.props.getInvoiceData(initialTableStatus);
     }
     componentWillReceiveProps(props){
@@ -115,7 +114,7 @@ class InvoicePage extends Component {
                         </div>
                         <div className="row-content">
                             <div className="parant">
-                                <div className="cell col-name">
+                                <div className="cell">
                                     <div className="col-name">
                                         <span className="profile-image"><i className="fas fa-user-circle"></i></span>
                                         <span className="lastname">{row.lastname},</span>
@@ -148,7 +147,7 @@ class InvoicePage extends Component {
             })
         }else if(!isLoading){
             rows.push(
-                <div key={'No-Date'} className="card p-20">
+                <div key={'No-Date'} className="card no-data-card p-20">
                     <div className="cell">
                         <span>No data available in table</span>
                     </div>
@@ -170,6 +169,7 @@ class InvoicePage extends Component {
         this.props.getInvoiceData(tableStatus);
     }
   render() {
+      let {activeRange} = this.state;
     let {data, isLoading}= this.props.invoiceData;
     let tableStatus = data.tableStatus;
     const sortClass = name => tableStatus.orderon === name && tableStatus.orderby === 'desc' ? 'up':'down';
@@ -181,10 +181,10 @@ class InvoicePage extends Component {
             </div>
             <div className="range-wrapper">
                 <ButtonGroup>
-                    <Button>0-30 days</Button>
-                    <Button>30 - 60 days</Button>
-                    <Button>60-90 days</Button>
-                    <Button>All time</Button>
+                    <Button id={1} active={activeRange === 1} onClick={()=>this.setState({activeRange:1})}>0-30 days</Button>
+                    <Button id={2} active={activeRange === 2} onClick={()=>this.setState({activeRange:2})}>30 - 60 days</Button>
+                    <Button id={3} active={activeRange === 3} onClick={()=>this.setState({activeRange:3})}>60-90 days</Button>
+                    <Button id={4} active={activeRange === 4} onClick={()=>this.setState({activeRange:4})}>All time</Button>
                 </ButtonGroup>
             </div>
             <div className="summary">
@@ -208,7 +208,7 @@ class InvoicePage extends Component {
                 </ButtonGroup>
             </div>
             <div className="search-box-wrapper">
-                <SearchInput className="search-input" onChange={this.searchUpdated} />
+                <SearchInput className="search-input" placeholder="Search invoice by Patient or Status" onChange={this.searchUpdated} />
             </div>
             <div className="table-wrapper">
                 <div className="table-header">

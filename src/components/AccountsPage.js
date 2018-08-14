@@ -111,10 +111,12 @@ class AccountsPage extends Component {
                         </div>
                         <div className="row-content">
                             <div className="parant">
-                                <div className="cell col-name">
-                                    <span className="profile-image"><i className="fas fa-user-circle"></i></span>
-                                    <span className="lastname">{row.lastname},</span>
-                                    <span className="firstname">{row.firstname}</span>
+                                <div className="cell">
+                                    <div className="col-name">
+                                        <span className="profile-image"><i className="fas fa-user-circle"></i></span>
+                                        <span className="lastname">{row.lastname},</span>
+                                        <span className="firstname">{row.firstname}</span>
+                                    </div>
                                 </div>
                                 <div className="cell col-amount">
                                     <div className="col-amount">
@@ -142,7 +144,7 @@ class AccountsPage extends Component {
             })
         }else if(!isLoading){
             rows.push(
-                <div key="no-data" className="card p-20">
+                <div key="no-data" className="card no-data-card p-20">
                     <div className="cell">
                         <span>No data available in table</span>
                     </div>
@@ -174,7 +176,7 @@ class AccountsPage extends Component {
                 <h1>Accounts</h1>
             </div>
             <div className="search-box-wrapper">
-                <SearchInput className="search-input" onChange={this.searchUpdated} />
+                <SearchInput className="search-input" placeholder="Search accounts by Patient or Status" onChange={this.searchUpdated} />
             </div>
             <div className="table-wrapper">
                 <div className="table-header">
